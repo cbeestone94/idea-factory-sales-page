@@ -36,25 +36,36 @@
             padding: 60px 24px;
         }
 
-        /* Hero Section */
+        /* Hero / VSL Section */
         .hero {
             text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .hero-tagline {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .hero h1 {
             color: var(--burnt-orange);
             font-size: 4rem;
-            margin-bottom: 50px;
+            margin-bottom: 24px;
+            line-height: 1.1;
         }
 
-        .hero-tagline {
+        .hero-subtitle {
             font-size: 1.1rem;
-            color: var(--burnt-orange);
+            color: var(--warm-grey);
+            margin-bottom: 40px;
+        }
+
+        .vsl-wrapper {
+            background: var(--charcoal);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 -24px;
+            position: relative;
+        }
+
+        .vsl-wrapper video {
+            width: 100%;
+            display: block;
         }
 
         h1 {
@@ -84,14 +95,12 @@
             margin-bottom: 20px;
         }
 
-        /* Bold hook questions */
         .hook {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 12px;
         }
 
-        /* Emphasis styling */
         strong {
             color: var(--charcoal);
             font-weight: 700;
@@ -99,11 +108,6 @@
 
         em {
             font-style: italic;
-        }
-
-        /* Single line emphasis */
-        .single-line {
-            margin-bottom: 24px;
         }
 
         .emphasis-block {
@@ -160,44 +164,106 @@
             color: var(--burnt-orange);
         }
 
-        /* Feature boxes */
-        .feature-box {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 40px;
-            border-radius: 12px;
-            margin: 32px 0;
-        }
-
-        .feature-box h3 {
-            color: var(--burnt-orange);
-            margin-top: 0;
-        }
-
-        .feature-box p {
-            color: var(--cream);
-        }
-
-        /* Included list */
-        .included-list {
-            list-style: none;
-            padding: 0;
+        /* Benefit images */
+        .benefit-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
             margin: 24px 0;
         }
 
-        .included-list li {
-            padding: 12px 0;
-            padding-left: 32px;
-            position: relative;
+        .benefit-images.single {
+            grid-template-columns: 1fr;
+        }
+
+        .benefit-images img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Feature sections */
+        .feature-section {
+            margin: 48px 0;
+            padding: 48px 0;
             border-bottom: 1px solid var(--warm-cream);
         }
 
-        .included-list li:before {
-            content: ">";
-            position: absolute;
-            left: 0;
+        .feature-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .feature-section h3 {
+            font-size: 1.6rem;
+            color: var(--charcoal);
+            margin: 0 0 16px 0;
+        }
+
+        .feature-image {
+            width: 100%;
+            border-radius: 8px;
+            margin: 24px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 48px 40px;
+            border-radius: 16px;
+            margin: 60px 0;
+        }
+
+        .how-it-works h2 {
+            color: var(--cream);
+            margin-top: 0;
+        }
+
+        .step {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(235, 228, 218, 0.15);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
             color: var(--burnt-orange);
             font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--cream);
+            opacity: 0.8;
+        }
+
+        .compound-note {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(235, 228, 218, 0.15);
+        }
+
+        .compound-note p {
+            color: var(--cream);
+            opacity: 0.8;
+        }
+
+        .compound-note strong {
+            color: var(--cream);
         }
 
         /* Timeline */
@@ -222,6 +288,28 @@
             color: var(--burnt-orange);
             display: block;
             margin-bottom: 8px;
+        }
+
+        /* Included list */
+        .included-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+        }
+
+        .included-list li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            border-bottom: 1px solid var(--warm-cream);
+        }
+
+        .included-list li:before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--burnt-orange);
+            font-weight: 700;
         }
 
         /* CTA Section */
@@ -252,6 +340,16 @@
             margin-bottom: 32px;
         }
 
+        .guarantee {
+            font-size: 0.95rem;
+            color: var(--cream);
+            opacity: 0.8;
+            margin-top: 24px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .cta-button {
             display: inline-block;
             background: var(--burnt-orange);
@@ -267,6 +365,24 @@
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(191, 87, 47, 0.4);
+        }
+
+        .inline-cta {
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        /* Quote list */
+        .quote-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            font-style: italic;
+            color: var(--warm-grey);
+        }
+
+        .quote-list li {
+            padding: 8px 0;
         }
 
         /* Options Section */
@@ -287,10 +403,6 @@
             font-weight: 700;
             color: var(--burnt-orange);
             margin-bottom: 8px;
-        }
-
-        .option-three {
-            padding: 24px 0;
         }
 
         /* FAQ Section */
@@ -331,50 +443,6 @@
             margin: 48px 0;
         }
 
-        /* List styling for quotes */
-        .quote-list {
-            list-style: none;
-            padding: 0;
-            margin: 24px 0;
-            font-style: italic;
-            color: var(--warm-grey);
-        }
-
-        .quote-list li {
-            padding: 8px 0;
-        }
-
-        /* Split section */
-        .split-section {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            margin: 32px 0;
-            text-align: left;
-        }
-
-        .split-item {
-            margin-bottom: 32px;
-        }
-
-        .split-label {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-        }
-
-        .split-98 .split-label {
-            color: var(--warm-grey);
-        }
-
-        .split-2 .split-label {
-            color: var(--burnt-orange);
-        }
-
-        .option-label {
-            color: var(--burnt-orange);
-        }
-
         /* Responsive */
         @media (max-width: 640px) {
             .container {
@@ -385,6 +453,10 @@
                 font-size: 2.2rem;
             }
 
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
             h2 {
                 font-size: 1.5rem;
             }
@@ -393,12 +465,20 @@
                 font-size: 2.5rem;
             }
 
-            .cta-section {
+            .cta-section, .how-it-works {
                 padding: 40px 24px;
             }
 
-            .feature-box, .mistake, .testimonial {
+            .mistake, .testimonial {
                 padding: 24px;
+            }
+
+            .vsl-wrapper {
+                margin: 0 -20px;
+            }
+
+            .benefit-images {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -406,61 +486,43 @@
 <body>
     <div class="container">
 
-        <!-- Hero -->
+        <!-- ============================================ -->
+        <!-- HERO + VSL                                   -->
+        <!-- ============================================ -->
         <section class="hero">
-            <p class="hero-tagline">Share scroll-stopping content that no one else is publishing... Build real authority in your space... And actually ENJOY creating content again with:</p>
+            <p class="hero-subtitle">Coaches: Stop Publishing Content That Sounds Like Everyone Else</p>
             <h1>The Idea Factory</h1>
+            <p>Share scroll-stopping content that no one else is publishing... Build real authority in your space... And actually ENJOY creating content again.</p>
+
+            <div class="vsl-wrapper">
+                <video controls preload="metadata">
+                    <source src="video/vsl.mp4" type="video/mp4">
+                    Your browser does not support the video element.
+                </video>
+            </div>
         </section>
 
-        <!-- Hook -->
+        <div class="inline-cta">
+            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
+        </div>
+
+
+        <!-- ============================================ -->
+        <!-- ORIGIN STORY / NARRATIVE                     -->
+        <!-- ============================================ -->
         <section>
-            <p class="hook">Big promises? Yep.</p>
-            <p class="hook">Is the price tag equally as big? £297 to be precise.</p>
-            <p class="hook">Am I confident The Idea Factory is worth every damn penny? Oh yeah.</p>
-            <p>But I'm not the only person who thinks so.</p>
-        </section>
+            <p>A few years ago, I noticed something.</p>
 
-        <!-- Testimonials -->
-        <section>
-            <div class="testimonial">
-                <p class="testimonial-text">Charlie has used the Idea Factory to create a worldview that is so original, exciting and specific for his audience that it allowed him to create a report to use as a lead magnet that generated <strong>over 7k downloads.</strong></p>
-                <img src="images/testimonial-charlie-1.png" alt="Charlie testimonial screenshot" class="testimonial-image">
-                <p style="margin-top: 24px;">But perhaps more importantly, he now feels like he has something that allows him to be more authentic, play to his strengths and create the business he wants - with a system that's the equivalent of <em>'Taking the Limitless Pill'</em></p>
-                <img src="images/testimonial-charlie-2.png" alt="Charlie testimonial screenshot 2" class="testimonial-image">
-            </div>
-
-            <div class="testimonial">
-                <p class="testimonial-text"><span class="testimonial-name">Anna</span> couldn't BELIEVE that The Idea Factory took her brain dump, turned it into something her clients had never heard before, and stored it away ready to use:</p>
-                <img src="images/testimonial-anna.png" alt="Anna testimonial screenshot" class="testimonial-image">
-            </div>
-
-            <div class="testimonial">
-                <p class="testimonial-text"><span class="testimonial-name">Luke</span> was just "playing around" with ideas in the Idea Factory. Within no time, he'd built a complete SYSTEM that showed his clients exactly how their check-ins were driving results:</p>
-                <img src="images/testimonial-luke-1.png" alt="Luke testimonial screenshot" class="testimonial-image">
-                <img src="images/testimonial-luke-2.png" alt="Luke testimonial screenshot 2" class="testimonial-image">
-            </div>
-
-            <div class="testimonial">
-                <p class="testimonial-text">And <span class="testimonial-name">Josh</span>?</p>
-                <p>Well... Josh admitted he didn't think he was <em>'using the Idea Factory properly.'</em></p>
-                <p><strong>Plot twist:</strong> He still 3x'd his content output using it his own way.</p>
-                <img src="images/testimonial-josh.jpg" alt="Josh testimonial screenshot" class="testimonial-image">
-            </div>
-
-            <p>These are just a few coaches who've witnessed what happens when your ideas actually have somewhere to live.</p>
-            <p class="emphasis-block">So what the hell is The Idea Factory? And why does it work?</p>
-            <p>Let me start from the beginning.</p>
-        </section>
-
-        <!-- Origin Story -->
-        <section style="margin-top: 60px;">
-            <p><strong>A few years ago, I noticed something.</strong></p>
             <p>The best thinkers in any industry - the ones on popular podcasts, the ones with book deals, the ones clearly making the most money - all had one thing in common.</p>
+
             <p class="emphasis-block burnt-orange">Unique insights.</p>
+
             <p>Not more information. Not better hooks. Not trending audio.</p>
+
             <p><strong>Unique. Insights.</strong></p>
 
             <p>Meanwhile, all the advice in the fitness industry was:</p>
+
             <ul class="quote-list">
                 <li>'Copy what's working.'</li>
                 <li>'Use these hooks.'</li>
@@ -473,114 +535,172 @@
             <p><strong>Still struggling for clients.</strong></p>
 
             <p>And now?</p>
-            <p class="emphasis-block">AI is making this gap even wider.</p>
+            <p>AI is making this gap even wider.</p>
             <p>Not between who uses AI and who doesn't (everyone does, that ship has sailed).</p>
             <p>But between who uses AI as part of their process... and who just uses it to write their content for them.</p>
+
             <p>Here's the split:</p>
 
-            <div class="split-section">
-                <div class="split-item split-98">
-                    <p class="split-label">The 98%</p>
-                    <p>Are using AI as a replacement. Paste a prompt. Get an output. Maybe tweak a few words. Publish content that sounds like everyone else.</p>
-                    <p><strong>Result?</strong> Engagement dropping. Dream clients scrolling past. Crickets.</p>
-                </div>
-                <div class="split-item split-2">
-                    <p class="split-label">The 2%</p>
-                    <p>Are using AI as an accelerant. They've built systems that capture their unique thinking, develop ideas properly, and use AI to amplify their voice.</p>
-                    <p>They're publishing 20+ pieces a week across multiple platforms while spending LESS time than they used to spend on two posts.</p>
-                </div>
-            </div>
+            <p><strong>The 98%</strong> are using AI as a replacement. Paste a prompt. Get an output. Maybe tweak a few words. Publish content that sounds like everyone else.</p>
+            <p>Result? Engagement dropping. Dream clients scrolling past. Crickets.</p>
+
+            <p><strong>The 2%</strong> are using AI as an accelerant. They've built systems that capture their unique thinking, develop ideas properly, and use AI to amplify their voice.</p>
+            <p>They're publishing 20+ pieces a week across multiple platforms while spending LESS time than they used to spend on two posts.</p>
 
             <p class="emphasis-block burnt-orange">The Idea Factory puts you in that 2%.</p>
-            <p>But first...</p>
         </section>
 
-        <!-- 3 Mistakes -->
+
+        <!-- ============================================ -->
+        <!-- THE 3 MISTAKES                               -->
+        <!-- ============================================ -->
         <section>
+            <p>But first...</p>
             <h2>The 3 Mistakes Keeping You Invisible</h2>
-            <p>Over the years, I've watched hundreds of coaches struggle with content.</p>
-            <p>And here's the thing:</p>
-            <p>They weren't lazy. They weren't stupid. They weren't <em>'bad at marketing.'</em></p>
-            <p>They were making the same 3 mistakes.</p>
-            <p>Mistakes that weren't just minor inconveniences.</p>
-            <p>Oh no.</p>
-            <p><strong>These mistakes were making them invisible to their dream clients.</strong></p>
+            <p>Over the years, I've watched hundreds of coaches struggle with content. All of them making the same 3 mistakes that keep them invisible to dream clients.</p>
 
             <div class="mistake">
-                <h3><span class="mistake-number">Mistake #1:</span> Your Ideas Are Scattered (So They Might As Well Not Exist)</h3>
-                <p>I know you have ideas.</p>
-                <p>Notes apps. Voice memos. Scribbles on paper. Screenshots. Browser tabs. Ideas in 17 different places.</p>
+                <h3><span class="mistake-number">#1:</span> Your Ideas Are Scattered (So They Might As Well Not Exist)</h3>
+                <p>I know you have ideas - Apple Notes, notebooks, voice memos, screenshots, chrome tabs - Ideas in 17 different places.</p>
                 <p>But that is the problem.</p>
                 <p class="emphasis-block">When ideas live everywhere, they live nowhere.</p>
-                <p>Because when you sit down to write, you start from zero every single time.</p>
-                <p>The combination of <em>'what do I even post?'</em> and that blank page staring back at you?</p>
+                <p>Because when you sit down to write, you start from zero every single time. The combination of '<em>what do I even post</em>?' and that blank page staring back at you?</p>
                 <p>It's easier to just see what everyone else is posting and copy that.</p>
                 <p>Which leads us to...</p>
             </div>
 
             <div class="mistake">
-                <h3><span class="mistake-number">Mistake #2:</span> You're Not Connecting the Dots</h3>
-                <p>Coaches who sound original - the ones with saves, shares, and actual engagement - aren't having more original thoughts.</p>
-                <p>They're connecting ideas that other coaches would have lost.</p>
+                <h3><span class="mistake-number">#2:</span> You're Not Connecting the Dots</h3>
+                <p>Coaches who sound original - the ones with saves, shares, and actual engagement - aren't having more original thoughts. They're connecting ideas that other coaches would have lost.</p>
                 <p>That observation about your client's breakthrough? It links to something you read three months ago. Which connects to a pattern you've noticed across your best clients.</p>
                 <p><strong>These connections are GOLD.</strong></p>
                 <p>But they're lost forever when there's no system to capture them all and refer back to them.</p>
             </div>
 
             <div class="mistake">
-                <h3><span class="mistake-number">Mistake #3:</span> You're Using AI Backwards</h3>
+                <h3><span class="mistake-number">#3:</span> You're Using AI Backwards</h3>
                 <p>Most coaches use AI to skip the thinking.</p>
                 <p>When they should be using it to <strong>deepen</strong> the thinking.</p>
-                <p>The result?</p>
-                <p>Content that's technically "fine"... but completely forgettable.</p>
-                <p class="burnt-orange" style="font-weight: 700;">Beige.</p>
-                <p>Here's the thing about AI:</p>
-                <p>It only amplifies what you put into it.</p>
-                <p>Feed it shallow thinking? Get shallow output.</p>
+                <p>The result? Content that's technically "<em>fine</em>"... but completely forgettable. <span class="burnt-orange" style="font-weight: 700;">Beige.</span></p>
+                <p>AI only amplifies what you put into it, so shallow inputs get shallow outputs.</p>
                 <p>Feed it connected, well-developed ideas? It becomes the best thinking partner you've ever had.</p>
             </div>
         </section>
 
-        <!-- Product Reveal -->
+        <div class="inline-cta">
+            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
+        </div>
+
+        <hr>
+
+        <!-- ============================================ -->
+        <!-- PRODUCT INTRO                                -->
+        <!-- ============================================ -->
         <section>
             <h2>Introducing: The Idea Factory</h2>
             <p>If I had access to The Idea Factory when I started creating content, I'd be in a very different place today.</p>
             <p>This isn't another batch of templates that a hundred other coaches will all use.</p>
             <p>Far from it.</p>
-            <p>The Idea Factory shows you how to <strong>THINK</strong> about capturing, developing, and creating content.</p>
+            <p>The Idea Factory shows you how to THINK about capturing, developing, and creating content.</p>
             <p>Not so you're dependent on templates.</p>
             <p>But so you can craft messages that are TRULY unique to you.</p>
+            <p class="emphasis-block"><span class="burnt-orange">£297</span> — One-time payment. Lifetime access. All future updates included.</p>
         </section>
 
-        <!-- What's Inside -->
-        <section>
-            <h2>What's Inside</h2>
+        <div class="inline-cta">
+            <a href="#" class="cta-button">Get The Idea Factory</a>
+        </div>
 
-            <div class="feature-box">
-                <h3>"Active Idea Storage"</h3>
+        <hr>
+
+        <!-- ============================================ -->
+        <!-- BENEFITS + TESTIMONIALS                      -->
+        <!-- ============================================ -->
+        <section>
+            <h2>How the Idea Factory transforms your business</h2>
+            <p>Most coaches sit down to create content and start from scratch. Every. Single. Time.</p>
+            <p>With The Idea Factory, you never start from zero again.</p>
+
+            <h3>You'll never lose a good idea again.</h3>
+            <p>Every observation, client breakthrough, random shower thought — captured and stored in one place, ready when you need it. No more "I had a great idea for a post but I can't remember what it was."</p>
+
+            <div class="benefit-images">
+                <img src="images/vault-search.png" alt="Obsidian search showing connected notes">
+                <img src="images/vault-graph-full.png" alt="Full graph view of idea network">
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text"><span class="testimonial-name">Luke</span> was just "playing around" with ideas in the Idea Factory. Within no time, he'd built a complete SYSTEM that showed his clients exactly how their check-ins were driving results:</p>
+                <img src="images/testimonial-luke-1.png" alt="Luke testimonial screenshot" class="testimonial-image">
+                <img src="images/testimonial-luke-2.png" alt="Luke testimonial screenshot 2" class="testimonial-image">
+            </div>
+
+            <h3>Your ideas will connect themselves.</h3>
+            <p>The system is designed so that ideas link to each other naturally. That client story from Tuesday? It connects to the article you read last month. Which connects to your core philosophy. These connections are what make your content sound like no one else, and allow you to build out new ideas.</p>
+
+            <div class="benefit-images">
+                <img src="images/vault-developed-note.png" alt="A developed spark with wiki-links showing idea connections">
+                <img src="images/vault-graph-zoomed.png" alt="Graph view zoomed to a single node with connections">
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text"><span class="testimonial-name">Anna</span> couldn't BELIEVE that The Idea Factory took her brain dump, turned it into something her clients had never heard before, and stored it away ready to use:</p>
+                <img src="images/testimonial-anna.png" alt="Anna testimonial screenshot" class="testimonial-image">
+            </div>
+
+            <h3>Your content will actually sound like YOU.</h3>
+            <p>Not like ChatGPT. Not like the template everyone else bought. Like you, on your best day, with your sharpest thinking — but consistently. Every single week.</p>
+
+            <div class="testimonial">
+                <p class="testimonial-text">Charlie used the Idea Factory to create a worldview so original and specific for his audience that it generated <strong>over 7k downloads</strong> on a lead magnet report.</p>
+                <img src="images/testimonial-charlie-1.png" alt="Charlie testimonial screenshot" class="testimonial-image">
+                <p style="margin-top: 24px;">But more importantly, he now feels like he has something that allows him to be more authentic, play to his strengths and create the business he wants - with a system that's the equivalent of <em>'Taking the Limitless Pill'</em></p>
+                <img src="images/testimonial-charlie-2.png" alt="Charlie testimonial screenshot 2" class="testimonial-image">
+            </div>
+
+            <h3>You'll create more content in less time.</h3>
+            <p>Coaches using The Idea Factory are publishing 20+ pieces a week across multiple platforms while spending LESS time than they used to spend on two posts. Because when your ideas are developed and connected, creating content is just the last step — and the easiest one.</p>
+
+            <h3>Your content becomes a compounding asset.</h3>
+            <p>Most "systems" get worse over time. They get bloated, clunky, and you end up not bothering. The Idea Factory is the only content system that gets better the more you use it. After three months, you'll have so many connected ideas that content practically writes itself.</p>
+        </section>
+
+        <hr>
+
+        <!-- ============================================ -->
+        <!-- WHAT'S INSIDE                                -->
+        <!-- ============================================ -->
+        <section>
+            <h2>What's Inside The Idea Factory</h2>
+
+            <div class="feature-section">
+                <h3>Active Idea Storage</h3>
                 <p>A complete Obsidian vault, pre-configured with a six-stage workflow.</p>
                 <p>Templates for every stage. Dashboards showing exactly where each idea sits and what needs attention next.</p>
                 <p>No more ideas dying in scattered notes across 17 apps.</p>
                 <p>This is your idea factory (literally). Everything in one place. Ready when you are.</p>
+                <img src="images/vault-dashboard.png" alt="Spark list dashboard showing idea titles" class="feature-image">
             </div>
 
-            <div class="feature-box">
-                <h3>"Deep Thinking Prompts"</h3>
+            <div class="feature-section">
+                <h3>Deep Thinking Prompts</h3>
                 <p>At each stage, you'll find questions designed to push your thinking beyond the obvious.</p>
                 <p>These aren't generic "define your target audience" prompts.</p>
                 <p>They're specifically crafted for coaches who want to stand out.</p>
                 <p>The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
             </div>
 
-            <div class="feature-box">
-                <h3>"AI-Supercharged"</h3>
+            <div class="feature-section">
+                <h3>AI-Supercharged</h3>
                 <p>Full integration with Claude AI, built right into the vault.</p>
                 <p>But here's the difference:</p>
-                <p><strong style="color: var(--burnt-orange);">This AI has context.</strong></p>
+                <p><strong class="burnt-orange">This AI has context.</strong></p>
                 <p>It knows your positioning. It understands your voice. It can see your connected ideas.</p>
                 <p>When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
             </div>
+        </section>
 
+        <section>
             <h3>Also Included:</h3>
             <ul class="included-list">
                 <li>Video walkthrough of the complete system</li>
@@ -591,40 +711,70 @@
             </ul>
         </section>
 
-        <!-- Honest Truth -->
+        <hr>
+
+        <!-- ============================================ -->
+        <!-- HOW IT WORKS (3 steps)                       -->
+        <!-- ============================================ -->
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+
+            <div class="step">
+                <span class="step-number">Step 1</span>
+                <p class="step-title">Capture</p>
+                <p>An idea hits you — in a session, on a walk, in the shower. You capture it in seconds using voice, text, or a quick note. It goes straight into your Idea Factory. No more losing ideas across 17 different apps.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">Step 2</span>
+                <p class="step-title">Connect</p>
+                <p>The system prompts you to develop your raw idea. Deep thinking questions push you beyond the obvious. And because all your ideas live in one place, you start seeing connections you'd never have spotted before. That's where the magic happens.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">Step 3</span>
+                <p class="step-title">Create</p>
+                <p>When it's time to publish, you're not staring at a blank page. You're pulling from a vault of connected, developed ideas — and Claude AI (with full context of YOUR thinking) helps you turn them into scroll-stopping posts, newsletters, and long-form content in minutes.</p>
+            </div>
+
+            <div class="compound-note">
+                <p><strong>The more you use it, the better it gets.</strong> After one week, you'll have ideas ready to share. After one month, you'll create long-form content every week in under 30 minutes. After three months, your content will stand out from everyone else — without dancing on camera or screaming 'optimised hooks' in 2 seconds to grab attention.</p>
+            </div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">And <span class="testimonial-name">Josh</span>? He admitted he didn't think he was <em>'using the Idea Factory properly.'</em></p>
+            <p><strong>Plot twist:</strong> He still 3x'd his content output using it his own way.</p>
+            <img src="images/testimonial-josh.jpg" alt="Josh testimonial screenshot" class="testimonial-image">
+        </div>
+
+        <hr>
+
+        <!-- ============================================ -->
+        <!-- THE HONEST TRUTH                             -->
+        <!-- ============================================ -->
         <section>
             <h2>The Honest Truth</h2>
-            <p>I'm not going to pretend this is some magic button. It's not a course that you watch once, implement, and you're suddenly Googling 'How to say no to 100s of leads in my niche per day'</p>
+            <p>I'm not going to pretend this is some magic button. It's not a course that you watch once, implement, and you're suddenly Googling 'How to say no to 100s of leads in my niche per day.'</p>
             <p>It's not a quick fix - implementing what is inside will take time. The system needs to be learnt, you need to capture the ideas to be able to make the connections. Most people spend 2-3 hours getting set up and learning the workflow.</p>
             <p>In fact - I've been very clear with the people I've sent it to so far -</p>
             <p class="emphasis-block">When I send you your Idea Factory - it is the <em>worst</em> it will ever be.</p>
             <p>It is bursting with potential - but it doesn't have your ideas in.</p>
-            <p>But that's what makes it so unique - most coaches have 'systems' that get worse over time. You lose shit, it gets bloated and clunky and you end up not bothering.</p>
-            <p class="emphasis-block burnt-orange">The Idea Factory is the only content system that gets better the more you use it.</p>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-label">After one week</span>
-                    You'll have some great ideas that you're ready to share.
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-label">After one month</span>
-                    You'll have enough cool connections, stories, quotes to create engaging long-form content every single week without spending more than 30 minutes.
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-label">After 3 months?</span>
-                    You'll have so many ideas connected that your content will stand out from everyone else, without you dancing around on camera or screaming 'optimised hooks' in 2 seconds to grab attention.
-                </div>
-            </div>
+            <p>But that's what makes it so unique.</p>
         </section>
 
-        <!-- CTA Section -->
+        <hr>
+
+        <!-- ============================================ -->
+        <!-- CTA + PRICING                                -->
+        <!-- ============================================ -->
         <section class="cta-section">
             <h2>Ready to Build Your Idea Engine?</h2>
             <div class="price">£297</div>
             <p class="price-note">One-time payment. Lifetime access. All future updates included.</p>
             <p class="price-note">(You'll also want a Claude subscription - £13/month - to unlock the AI features. Well worth it.)</p>
             <a href="#" class="cta-button">Get The Idea Factory</a>
+            <p class="guarantee">30-day money back guarantee. If you set up the system, use it for 30 days, and don't feel like it's changed how you create content — email me and I'll refund you in full. No questions asked.</p>
         </section>
 
         <hr>
@@ -643,11 +793,15 @@
                 <p>You can build something yourself - You can download Obsidian, try and learn how to use it, spend hours on YouTube figuring out MCPs, AI connections and then the best way to store and manage all of your notes so you can find and connect them yourself. Probably doable in around 12 months of concerted effort.</p>
             </div>
 
-            <div class="option option-three">
+            <div class="option">
                 <p class="option-label">Option Three:</p>
                 <p>Get the complete system, built and tested. Start capturing and developing ideas this week. Publish content that sounds like you — not like every other coach in your feed.</p>
             </div>
         </section>
+
+        <div class="inline-cta">
+            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
+        </div>
 
         <!-- FAQ -->
         <section class="faq">
@@ -666,6 +820,11 @@
             <div class="faq-item">
                 <p class="faq-question">How is this different from just using ChatGPT?</p>
                 <p class="faq-answer">It comes down to one simple thing, and that is that ChatGPT gets worse with use, whereas The Idea Factory gets better with use over time. ChatGPT is designed in a way where you can give projects system prompts and you can prompt properly, but its memory gets worse over time. So ideas you spoke about a couple of weeks ago won't get surfaced no matter how much you prompt it. Also, eventually project chats do become full, and then once that happens, you lose all of the context that you've already given it. The Idea Factory, you never lose that because each file for each note is separate. Therefore, it can only improve with your use, with more ideas over time.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">How does it use AI?</p>
+                <p class="faq-answer">There are different layers of AI use, and you can start small and learn as you go. It's recommended that you use Claude, as there are features that connect directly to the Idea Factory. You can ask Claude to search for notes, to edit ones you have, make connections between them and also to use them to help you write out ideas. More advanced uses include using 'Skills' to help you write, bring your ideas together, connect several ideas and help you surface insights that you can't actually see yourself.</p>
             </div>
 
             <div class="faq-item">
