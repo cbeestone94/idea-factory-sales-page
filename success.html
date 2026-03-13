@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In | The Idea Factory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #2D2D2D;
+            --burnt-orange: #BF572F;
+            --cream: #EBE4DA;
+            --warm-cream: #E4DCD0;
+            --warm-grey: #6B6B6B;
+            --off-white: #F5F1EC;
+            --deep-charcoal: #1E1E1E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .success-eyebrow {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--burnt-orange);
+            margin-bottom: 24px;
+        }
+
+        .success-headline {
+            font-family: 'Lora', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--charcoal);
+            margin-bottom: 24px;
+        }
+
+        .success-body {
+            font-size: 1.1rem;
+            color: var(--warm-grey);
+            margin-bottom: 16px;
+        }
+
+        .success-body strong {
+            color: var(--charcoal);
+        }
+
+        .success-note {
+            font-size: 0.95rem;
+            color: var(--warm-grey);
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--warm-cream);
+        }
+
+        .success-note a {
+            color: var(--burnt-orange);
+            text-decoration: none;
+        }
+        .success-note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <p class="success-eyebrow">You're in</p>
+        <h1 class="success-headline">Welcome to The Idea Factory</h1>
+        <p class="success-body">
+            Your download link is on its way to your inbox.
+        </p>
+        <p class="success-body">
+            <strong>Check your email</strong> in the next few minutes — it'll contain everything you need to get started.
+        </p>
+        <p class="success-body">
+            If you don't see it, check your spam or promotions folder.
+        </p>
+        <p class="success-note">
+            Still nothing after 10 minutes? Email <a href="mailto:charlie@strongcollective.co">charlie@strongcollective.co</a> and I'll sort it.
+        </p>
+    </div>
+</body>
+</html>

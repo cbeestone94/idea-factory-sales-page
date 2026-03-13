@@ -6,7 +6,7 @@
     <title>The Idea Factory | Content System for Coaches</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --charcoal: #2D2D2D;
@@ -14,13 +14,11 @@
             --cream: #EBE4DA;
             --warm-cream: #E4DCD0;
             --warm-grey: #6B6B6B;
+            --off-white: #F5F1EC;
+            --deep-charcoal: #1E1E1E;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Work Sans', sans-serif;
@@ -28,61 +26,119 @@
             line-height: 1.7;
             color: var(--charcoal);
             background-color: var(--cream);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 60px 24px;
+        /* ---- LAYOUT ---- */
+        .container { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
+        .container-wide { max-width: 960px; margin: 0 auto; padding: 80px 24px; }
+
+        .section-dark {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+        .section-white {
+            background: var(--off-white);
+        }
+        .section-deep {
+            background: var(--deep-charcoal);
+            color: var(--cream);
         }
 
-        /* Hero / VSL Section */
-        .hero {
+        /* ---- SCROLL FADE-IN ---- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ---- HERO ---- */
+        .hero-section {
             text-align: center;
-            margin-bottom: 60px;
+            padding: 100px 24px 80px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h1 {
+        .hero-spotlight {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140%;
+            height: 600px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: spotlightFade 2s ease-out 0.3s forwards;
+        }
+        @keyframes spotlightFade { to { opacity: 1; } }
+
+        .hero-section > * { position: relative; z-index: 1; }
+
+        .hero-eyebrow {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             color: var(--burnt-orange);
-            font-size: 4rem;
             margin-bottom: 24px;
-            line-height: 1.1;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
+        .hero-headline {
+            font-family: 'Lora', serif;
+            font-size: 3.6rem;
+            font-weight: 600;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 24px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-headline .highlight {
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #E8884D 25%, var(--burnt-orange) 50%, #D4623A 75%, var(--burnt-orange) 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
             color: var(--warm-grey);
-            margin-bottom: 40px;
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
         }
 
         .vsl-wrapper {
             background: var(--charcoal);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            margin: 0 -24px;
-            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.15);
         }
+        .vsl-wrapper video { width: 100%; display: block; }
 
-        .vsl-wrapper video {
-            width: 100%;
-            display: block;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--charcoal);
-            margin-bottom: 40px;
-            line-height: 1.1;
-        }
-
+        /* ---- TYPOGRAPHY ---- */
         h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-family: 'Lora', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
             color: var(--charcoal);
-            margin: 60px 0 24px 0;
-            line-height: 1.3;
+            margin-bottom: 24px;
+            line-height: 1.2;
         }
+        .section-dark h2,
+        .section-deep h2 { color: var(--cream); }
 
         h3 {
             font-size: 1.4rem;
@@ -91,219 +147,285 @@
             margin: 40px 0 16px 0;
         }
 
-        p {
-            margin-bottom: 20px;
-        }
-
-        .hook {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        strong {
-            color: var(--charcoal);
-            font-weight: 700;
-        }
-
-        em {
-            font-style: italic;
-        }
+        p { margin-bottom: 20px; }
+        strong { color: var(--charcoal); font-weight: 700; }
+        .section-dark strong { color: var(--cream); }
+        em { font-style: italic; }
 
         .emphasis-block {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--charcoal);
             margin: 32px 0;
         }
+        .burnt-orange { color: var(--burnt-orange); }
 
-        .burnt-orange {
-            color: var(--burnt-orange);
+        .hook { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; }
+        .counter { font-variant-numeric: tabular-nums; }
+
+        /* ---- CTA BUTTON ---- */
+        .cta-button {
+            display: inline-block;
+            background: var(--burnt-orange);
+            color: white;
+            padding: 20px 48px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
         }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            pointer-events: none;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(191,87,47,0.5); }
+        .cta-button:hover::before { width: 300px; height: 300px; }
 
-        /* Testimonial Cards */
+        .inline-cta { text-align: center; padding: 48px 24px; }
+
+        /* ---- QUOTE LIST ---- */
+        .quote-list { list-style: none; padding: 0; margin: 24px 0; font-style: italic; color: var(--warm-grey); }
+        .quote-list li { padding: 8px 0; }
+
+        /* ---- TESTIMONIALS ---- */
         .testimonial {
             background: white;
-            border-radius: 12px;
-            padding: 32px;
-            margin: 32px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
         }
-
-        .testimonial-text {
-            font-size: 1rem;
-            margin-bottom: 16px;
+        .section-dark .testimonial {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(235,228,218,0.1);
+            box-shadow: none;
         }
+        .section-dark .testimonial .testimonial-text { color: var(--cream); }
+        .testimonial-text { font-size: 1rem; margin-bottom: 16px; line-height: 1.7; }
+        .testimonial-image { width: 100%; border-radius: 12px; margin-top: 16px; }
+        .testimonial-name { font-weight: 700; color: var(--burnt-orange); }
 
-        .testimonial-image {
-            width: 100%;
-            border-radius: 8px;
-            margin-top: 16px;
-        }
-
-        .testimonial-name {
-            font-weight: 700;
-            color: var(--burnt-orange);
-        }
-
-        /* Mistake sections */
+        /* ---- MISTAKES SECTION ---- */
         .mistake {
             background: white;
-            border-left: 4px solid var(--burnt-orange);
-            padding: 32px;
+            padding: 40px;
             margin: 32px 0;
-            border-radius: 0 12px 12px 0;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
         }
-
-        .mistake h3 {
-            margin-top: 0;
-            color: var(--charcoal);
+        .mistake::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--burnt-orange);
+            border-radius: 4px 0 0 4px;
         }
+        .mistake h3 { margin-top: 0; color: var(--charcoal); font-size: 1.3rem; }
+        .mistake-number { color: var(--burnt-orange); }
 
-        .mistake-number {
-            color: var(--burnt-orange);
-        }
-
-        /* Benefit images */
-        .benefit-images {
+        /* ---- BENEFITS ---- */
+        .benefit-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .benefit-images.single {
-            grid-template-columns: 1fr;
-        }
-
-        .benefit-images img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Feature sections */
-        .feature-section {
+            gap: 32px;
             margin: 48px 0;
-            padding: 48px 0;
-            border-bottom: 1px solid var(--warm-cream);
+        }
+        .benefit-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin: 0 0 12px 0;
+        }
+        .benefit-card p {
+            font-size: 0.95rem;
+            color: var(--warm-grey);
+            margin-bottom: 0;
+        }
+        .benefit-number {
+            font-family: 'Lora', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--burnt-orange);
+            opacity: 0.3;
+            margin-bottom: 16px;
+            display: block;
         }
 
-        .feature-section:last-of-type {
-            border-bottom: none;
+        .benefit-images { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        .benefit-images.single { grid-template-columns: 1fr; }
+        .benefit-images img { width: 100%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+
+        /* 3D Graph */
+        .graph-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 32px 0;
+            background: var(--charcoal);
+            cursor: grab;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+        .graph-wrapper:active { cursor: grabbing; }
+        .graph-wrapper canvas { display: block; }
+        .graph-tooltip {
+            position: absolute;
+            background: rgba(45,45,45,0.95);
+            color: var(--cream);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            max-width: 280px;
+            line-height: 1.4;
+            z-index: 10;
+            border: 1px solid var(--burnt-orange);
         }
 
-        .feature-section h3 {
+        /* ---- FEATURES ---- */
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 40px;
+            margin: 32px 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .feature-card h3 {
+            font-family: 'Lora', serif;
             font-size: 1.6rem;
             color: var(--charcoal);
             margin: 0 0 16px 0;
+            font-weight: 600;
         }
-
-        .feature-image {
-            width: 100%;
-            border-radius: 8px;
-            margin: 24px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        /* How It Works */
-        .how-it-works {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 48px 40px;
-            border-radius: 16px;
-            margin: 60px 0;
-        }
-
-        .how-it-works h2 {
-            color: var(--cream);
-            margin-top: 0;
-        }
-
-        .step {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(235, 228, 218, 0.15);
-        }
-
-        .step:last-child {
-            border-bottom: none;
-        }
-
-        .step-number {
-            color: var(--burnt-orange);
-            font-weight: 700;
-            font-size: 0.85rem;
+        .feature-card .feature-label {
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: var(--burnt-orange);
+            margin-bottom: 12px;
             display: block;
-            margin-bottom: 8px;
+        }
+        .feature-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 24px 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         }
 
+        /* Video placeholder for benefit videos */
+        .video-placeholder {
+            background: var(--charcoal);
+            border-radius: 16px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 24px 0;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+        .video-placeholder span {
+            color: var(--warm-grey);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .video-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        /* ---- HOW IT WORKS ---- */
+        .how-it-works {
+            padding: 80px 0;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 48px;
+        }
+        .step {
+            text-align: center;
+        }
+        .step-number {
+            font-family: 'Lora', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--burnt-orange);
+            opacity: 0.25;
+            display: block;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
         .step-title {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--cream);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
-
-        .step p {
-            color: var(--cream);
-            opacity: 0.8;
-        }
-
+        .step p { color: var(--cream); opacity: 0.8; font-size: 0.95rem; }
         .compound-note {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(235, 228, 218, 0.15);
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(235,228,218,0.15);
+            text-align: center;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
         }
+        .compound-note p { color: var(--cream); opacity: 0.8; }
+        .compound-note strong { color: var(--cream); }
 
-        .compound-note p {
-            color: var(--cream);
-            opacity: 0.8;
+        /* ---- HOW IT WORKS VIDEO ---- */
+        .hiw-video {
+            max-width: 800px;
+            margin: 48px auto 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.3);
         }
+        .hiw-video video { width: 100%; display: block; }
 
-        .compound-note strong {
-            color: var(--cream);
-        }
-
-        /* Timeline */
-        .timeline {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            margin: 32px 0;
-        }
-
-        .timeline-item {
-            padding: 16px 0;
-            border-bottom: 1px solid var(--warm-cream);
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .timeline-label {
-            font-weight: 700;
-            color: var(--burnt-orange);
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        /* Included list */
-        .included-list {
-            list-style: none;
-            padding: 0;
-            margin: 24px 0;
-        }
-
+        /* ---- INCLUDED LIST ---- */
+        .included-list { list-style: none; padding: 0; margin: 24px 0; }
         .included-list li {
-            padding: 12px 0;
+            padding: 16px 0;
             padding-left: 32px;
             position: relative;
             border-bottom: 1px solid var(--warm-cream);
+            font-size: 1.05rem;
         }
-
+        .included-list li:last-child { border-bottom: none; }
         .included-list li:before {
             content: ">";
             position: absolute;
@@ -312,542 +434,660 @@
             font-weight: 700;
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 60px 40px;
-            border-radius: 16px;
+        /* ---- PRICING CTA ---- */
+        .pricing-section {
             text-align: center;
-            margin: 60px 0;
+            padding: 80px 24px;
         }
-
-        .cta-section h2 {
-            color: var(--cream);
-            margin-top: 0;
-        }
-
         .price {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-family: 'Lora', serif;
+            font-size: 4rem;
+            font-weight: 600;
             color: var(--burnt-orange);
             margin: 24px 0;
         }
-
-        .price-note {
-            font-size: 1rem;
-            color: var(--warm-grey);
-            margin-bottom: 32px;
-        }
-
+        .price-note { font-size: 1rem; color: var(--warm-grey); margin-bottom: 16px; }
+        .section-deep .price-note { color: rgba(235,228,218,0.6); }
         .guarantee {
             font-size: 0.95rem;
             color: var(--cream);
-            opacity: 0.8;
-            margin-top: 24px;
+            opacity: 0.7;
+            margin-top: 32px;
             max-width: 540px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: var(--burnt-orange);
-            color: white;
-            padding: 20px 48px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(191, 87, 47, 0.4);
-        }
-
-        .inline-cta {
-            text-align: center;
-            margin: 48px 0;
-        }
-
-        /* Quote list */
-        .quote-list {
-            list-style: none;
-            padding: 0;
-            margin: 24px 0;
-            font-style: italic;
-            color: var(--warm-grey);
-        }
-
-        .quote-list li {
-            padding: 8px 0;
-        }
-
-        /* Options Section */
-        .options {
-            margin: 60px 0;
-        }
-
+        /* ---- THREE OPTIONS ---- */
+        .options { margin: 48px 0; }
         .option {
-            padding: 24px 0;
+            padding: 32px 0;
             border-bottom: 1px solid var(--warm-cream);
         }
-
-        .option:last-child {
-            border-bottom: none;
-        }
-
+        .option:last-child { border-bottom: none; }
         .option-label {
-            font-weight: 700;
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            font-size: 1.2rem;
             color: var(--burnt-orange);
             margin-bottom: 8px;
         }
 
-        /* FAQ Section */
-        .faq {
-            margin: 60px 0;
-        }
+        /* ---- FAQ ---- */
+        .faq { margin: 48px 0; }
+        .faq-item { margin-bottom: 32px; }
+        .faq-question { font-weight: 700; color: var(--charcoal); margin-bottom: 8px; font-size: 1.05rem; }
+        .faq-answer { color: var(--warm-grey); }
 
-        .faq-item {
-            margin-bottom: 32px;
-        }
+        .final-cta { text-align: center; padding: 80px 24px; }
+        .final-cta p { font-size: 1.2rem; margin-bottom: 16px; }
 
-        .faq-question {
-            font-weight: 700;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-        }
+        hr { border: none; height: 1px; background: var(--warm-cream); margin: 0; }
 
-        .faq-answer {
-            color: var(--warm-grey);
-        }
-
-        /* Final CTA */
-        .final-cta {
+        .text-center { text-align: center; }
+        .section-header {
             text-align: center;
-            padding: 60px 0;
+            margin-bottom: 48px;
         }
-
-        .final-cta p {
-            font-size: 1.2rem;
-            margin-bottom: 16px;
+        .section-header p {
+            color: var(--warm-grey);
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        /* Divider */
-        hr {
-            border: none;
-            height: 1px;
-            background: var(--warm-cream);
-            margin: 48px 0;
-        }
+        .section-dark .section-header p { color: rgba(235,228,218,0.7); }
 
         /* Responsive */
-        @media (max-width: 640px) {
-            .container {
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .price {
-                font-size: 2.5rem;
-            }
-
-            .cta-section, .how-it-works {
-                padding: 40px 24px;
-            }
-
-            .mistake, .testimonial {
-                padding: 24px;
-            }
-
-            .vsl-wrapper {
-                margin: 0 -20px;
-            }
-
-            .benefit-images {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 768px) {
+            .hero-headline { font-size: 2.4rem; }
+            .hero-section { padding: 60px 20px 60px; }
+            h2 { font-size: 1.8rem; }
+            .price { font-size: 3rem; }
+            .container, .container-wide { padding: 48px 20px; }
+            .benefit-grid { grid-template-columns: 1fr; gap: 20px; }
+            .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+            .benefit-images { grid-template-columns: 1fr; }
+            .feature-card { padding: 32px 24px; }
+            .testimonial { padding: 28px; }
+            .mistake { padding: 28px; }
+            .pricing-section { padding: 60px 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
 
-        <!-- ============================================ -->
-        <!-- HERO + VSL                                   -->
-        <!-- ============================================ -->
-        <section class="hero">
-            <p class="hero-subtitle">Coaches: Stop Publishing Content That Sounds Like Everyone Else</p>
-            <h1>The Idea Factory</h1>
-            <p>Share scroll-stopping content that no one else is publishing... Build real authority in your space... And actually ENJOY creating content again.</p>
+    <!-- ============ HERO ============ -->
+    <section class="hero-section">
+        <svg class="hero-spotlight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3787 2842" fill="none">
+            <g filter="url(#spotlight-blur)">
+                <ellipse cx="1924.71" cy="273.501" rx="1924.71" ry="273.501"
+                    transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
+                    fill="#BF572F" fill-opacity="0.12"/>
+            </g>
+            <defs>
+                <filter id="spotlight-blur" x="0.86" y="0.84" width="3785.16" height="2840.26"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="bg"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="bg" result="shape"/>
+                    <feGaussianBlur stdDeviation="151" result="blur"/>
+                </filter>
+            </defs>
+        </svg>
 
-            <div class="vsl-wrapper">
-                <video controls preload="metadata">
-                    <source src="video/vsl.mp4" type="video/mp4">
-                    Your browser does not support the video element.
-                </video>
-            </div>
-        </section>
+        <p class="hero-eyebrow">For Coaches Who Think Deeply</p>
+        <h1 class="hero-headline">Stop Staring at Blank Pages.<br>Start Publishing Ideas <span class="highlight">Only You Could Share.</span></h1>
+        <p class="hero-sub">The complete idea-to-content system that captures your unique thinking, develops it into original insights, and turns it into scroll-stopping content — in minutes, not hours.</p>
 
-        <div class="inline-cta">
-            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
+        <div class="vsl-wrapper">
+            <video controls preload="metadata">
+                <source src="video/vsl.mp4" type="video/mp4">
+                Your browser does not support the video element.
+            </video>
         </div>
+    </section>
 
+    <div class="inline-cta">
+        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s" class="cta-button">Get The Idea Factory — £297</a>
+    </div>
 
-        <!-- ============================================ -->
-        <!-- ORIGIN STORY / NARRATIVE                     -->
-        <!-- ============================================ -->
-        <section>
+    <!-- ============ ORIGIN STORY ============ -->
+    <div class="container">
+        <section class="fade-in">
             <p>A few years ago, I noticed something.</p>
-
-            <p>The best thinkers in any industry - the ones on popular podcasts, the ones with book deals, the ones clearly making the most money - all had one thing in common.</p>
-
+            <p>The best thinkers in any industry — the ones on popular podcasts, the ones with book deals, the ones clearly making the most money — all had one thing in common.</p>
             <p class="emphasis-block burnt-orange">Unique insights.</p>
-
             <p>Not more information. Not better hooks. Not trending audio.</p>
-
             <p><strong>Unique. Insights.</strong></p>
-
             <p>Meanwhile, all the advice in the fitness industry was:</p>
-
             <ul class="quote-list">
                 <li>'Copy what's working.'</li>
                 <li>'Use these hooks.'</li>
                 <li>'Follow this template.'</li>
             </ul>
-
             <p>Fast forward to today and guess what?</p>
             <p>The best thinkers are still thriving. Still getting book deals. Still invited onto podcasts.</p>
             <p>The coaches who followed the templates?</p>
             <p><strong>Still struggling for clients.</strong></p>
-
-            <p>And now?</p>
-            <p>AI is making this gap even wider.</p>
-            <p>Not between who uses AI and who doesn't (everyone does, that ship has sailed).</p>
+            <p>And now AI is making this gap even wider.</p>
+            <p>Not between who uses AI and who doesn't — everyone does, that ship has sailed.</p>
             <p>But between who uses AI as part of their process... and who just uses it to write their content for them.</p>
-
-            <p>Here's the split:</p>
-
             <p><strong>The 98%</strong> are using AI as a replacement. Paste a prompt. Get an output. Maybe tweak a few words. Publish content that sounds like everyone else.</p>
             <p>Result? Engagement dropping. Dream clients scrolling past. Crickets.</p>
-
             <p><strong>The 2%</strong> are using AI as an accelerant. They've built systems that capture their unique thinking, develop ideas properly, and use AI to amplify their voice.</p>
-            <p>They're publishing 20+ pieces a week across multiple platforms while spending LESS time than they used to spend on two posts.</p>
-
+            <p>They're publishing <strong class="counter" data-target="20" data-suffix="+">0</strong> pieces a week across multiple platforms while spending LESS time than they used to spend on two posts.</p>
             <p class="emphasis-block burnt-orange">The Idea Factory puts you in that 2%.</p>
         </section>
+    </div>
 
+    <!-- ============ 3 MISTAKES ============ -->
+    <section class="section-white">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>The 3 Mistakes Keeping You Invisible</h2>
+                <p>Hundreds of coaches making the same errors that keep them invisible to dream clients.</p>
+            </div>
 
-        <!-- ============================================ -->
-        <!-- THE 3 MISTAKES                               -->
-        <!-- ============================================ -->
-        <section>
-            <p>But first...</p>
-            <h2>The 3 Mistakes Keeping You Invisible</h2>
-            <p>Over the years, I've watched hundreds of coaches struggle with content. All of them making the same 3 mistakes that keep them invisible to dream clients.</p>
-
-            <div class="mistake">
-                <h3><span class="mistake-number">#1:</span> Your Ideas Are Scattered (So They Might As Well Not Exist)</h3>
-                <p>I know you have ideas - Apple Notes, notebooks, voice memos, screenshots, chrome tabs - Ideas in 17 different places.</p>
-                <p>But that is the problem.</p>
+            <div class="mistake fade-in">
+                <h3><span class="mistake-number">#1</span> Your Ideas Are Scattered</h3>
+                <p>Apple Notes, notebooks, voice memos, screenshots, Chrome tabs — ideas in 17 different places.</p>
                 <p class="emphasis-block">When ideas live everywhere, they live nowhere.</p>
-                <p>Because when you sit down to write, you start from zero every single time. The combination of '<em>what do I even post</em>?' and that blank page staring back at you?</p>
-                <p>It's easier to just see what everyone else is posting and copy that.</p>
-                <p>Which leads us to...</p>
+                <p>When you sit down to write, you start from zero every single time. The combination of '<em>what do I even post</em>?' and that blank page staring back at you? It's easier to just see what everyone else is posting and copy that.</p>
             </div>
 
-            <div class="mistake">
-                <h3><span class="mistake-number">#2:</span> You're Not Connecting the Dots</h3>
-                <p>Coaches who sound original - the ones with saves, shares, and actual engagement - aren't having more original thoughts. They're connecting ideas that other coaches would have lost.</p>
+            <div class="mistake fade-in">
+                <h3><span class="mistake-number">#2</span> You're Not Connecting the Dots</h3>
+                <p>Coaches who sound original aren't having more original thoughts. They're connecting ideas that other coaches would have lost.</p>
                 <p>That observation about your client's breakthrough? It links to something you read three months ago. Which connects to a pattern you've noticed across your best clients.</p>
-                <p><strong>These connections are GOLD.</strong></p>
-                <p>But they're lost forever when there's no system to capture them all and refer back to them.</p>
+                <p><strong>These connections are GOLD.</strong> But they're lost forever when there's no system to capture them all and refer back to them.</p>
             </div>
 
-            <div class="mistake">
-                <h3><span class="mistake-number">#3:</span> You're Using AI Backwards</h3>
-                <p>Most coaches use AI to skip the thinking.</p>
-                <p>When they should be using it to <strong>deepen</strong> the thinking.</p>
+            <div class="mistake fade-in">
+                <h3><span class="mistake-number">#3</span> You're Using AI Backwards</h3>
+                <p>Most coaches use AI to skip the thinking. When they should be using it to <strong>deepen</strong> the thinking.</p>
                 <p>The result? Content that's technically "<em>fine</em>"... but completely forgettable. <span class="burnt-orange" style="font-weight: 700;">Beige.</span></p>
-                <p>AI only amplifies what you put into it, so shallow inputs get shallow outputs.</p>
-                <p>Feed it connected, well-developed ideas? It becomes the best thinking partner you've ever had.</p>
+                <p>AI only amplifies what you put into it. Shallow inputs, shallow outputs. Feed it connected, well-developed ideas? It becomes the best thinking partner you've ever had.</p>
             </div>
-        </section>
-
-        <div class="inline-cta">
-            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
         </div>
+    </section>
 
-        <hr>
+    <div class="inline-cta">
+        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s" class="cta-button">Get The Idea Factory — £297</a>
+    </div>
 
-        <!-- ============================================ -->
-        <!-- PRODUCT INTRO                                -->
-        <!-- ============================================ -->
-        <section>
-            <h2>Introducing: The Idea Factory</h2>
-            <p>If I had access to The Idea Factory when I started creating content, I'd be in a very different place today.</p>
-            <p>This isn't another batch of templates that a hundred other coaches will all use.</p>
-            <p>Far from it.</p>
-            <p>The Idea Factory shows you how to THINK about capturing, developing, and creating content.</p>
-            <p>Not so you're dependent on templates.</p>
-            <p>But so you can craft messages that are TRULY unique to you.</p>
-            <p class="emphasis-block"><span class="burnt-orange">£297</span> — One-time payment. Lifetime access. All future updates included.</p>
-        </section>
+    <!-- ============ BIG BENEFIT SECTION ============ -->
+    <section class="section-dark">
+        <div class="container-wide">
+            <div class="section-header fade-in">
+                <h2>How The Idea Factory Transforms Your Business</h2>
+                <p>Most coaches sit down to create content and start from scratch. Every. Single. Time. With The Idea Factory, you never start from zero again.</p>
+            </div>
 
-        <div class="inline-cta">
-            <a href="#" class="cta-button">Get The Idea Factory</a>
+            <div class="benefit-grid">
+                <div class="benefit-card fade-in">
+                    <span class="benefit-number">01</span>
+                    <h3>Never Lose a Good Idea Again</h3>
+                    <p>Every observation, client breakthrough, random shower thought — captured and stored in one place, ready when you need it. No more "I had a great idea but I can't remember it."</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-number">02</span>
+                    <h3>Your Ideas Connect Themselves</h3>
+                    <p>The system links ideas to each other naturally. That client story connects to the article you read last month, which connects to your core philosophy. That's what makes your content sound like no one else.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-number">03</span>
+                    <h3>Content That Actually Sounds Like You</h3>
+                    <p>Not like ChatGPT. Not like the template everyone else bought. Like you, on your best day, with your sharpest thinking — but consistently. Every single week.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-number">04</span>
+                    <h3>More Content in Less Time</h3>
+                    <p>Publish <strong>20+ pieces a week</strong> across multiple platforms while spending LESS time than you used to on two posts. When ideas are developed and connected, creating content is just the last step.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <hr>
-
-        <!-- ============================================ -->
-        <!-- BENEFITS + TESTIMONIALS                      -->
-        <!-- ============================================ -->
+    <!-- ============ BENEFIT DEEP DIVES + TESTIMONIALS ============ -->
+    <div class="container">
         <section>
-            <h2>How the Idea Factory transforms your business</h2>
-            <p>Most coaches sit down to create content and start from scratch. Every. Single. Time.</p>
-            <p>With The Idea Factory, you never start from zero again.</p>
-
-            <h3>You'll never lose a good idea again.</h3>
-            <p>Every observation, client breakthrough, random shower thought — captured and stored in one place, ready when you need it. No more "I had a great idea for a post but I can't remember what it was."</p>
-
-            <div class="benefit-images">
+            <h3 class="fade-in">See it in action: Idea Storage</h3>
+            <p class="fade-in">Your vault stores every spark of an idea with a six-stage workflow. Nothing gets lost. Everything is ready when you need it.</p>
+            <div class="benefit-images fade-in">
                 <img src="images/vault-search.png" alt="Obsidian search showing connected notes">
                 <img src="images/vault-graph-full.png" alt="Full graph view of idea network">
             </div>
 
-            <div class="testimonial">
+            <!-- VIDEO PLACEHOLDER: benefit video 1 -->
+            <div class="video-placeholder fade-in">
+                <span>Benefit video coming soon</span>
+            </div>
+
+            <div class="testimonial fade-in">
                 <p class="testimonial-text"><span class="testimonial-name">Luke</span> was just "playing around" with ideas in the Idea Factory. Within no time, he'd built a complete SYSTEM that showed his clients exactly how their check-ins were driving results:</p>
-                <img src="images/testimonial-luke-1.png" alt="Luke testimonial screenshot" class="testimonial-image">
-                <img src="images/testimonial-luke-2.png" alt="Luke testimonial screenshot 2" class="testimonial-image">
+                <img src="images/testimonial-luke-1.png" alt="Luke testimonial" class="testimonial-image">
+                <img src="images/testimonial-luke-2.png" alt="Luke testimonial" class="testimonial-image">
             </div>
 
-            <h3>Your ideas will connect themselves.</h3>
-            <p>The system is designed so that ideas link to each other naturally. That client story from Tuesday? It connects to the article you read last month. Which connects to your core philosophy. These connections are what make your content sound like no one else, and allow you to build out new ideas.</p>
+            <h3 class="fade-in">See it in action: Self-Connecting Ideas</h3>
+            <p class="fade-in">Watch how ideas that entered the vault weeks apart suddenly reveal they're about the same thing. This is where original content comes from.</p>
 
-            <div class="benefit-images">
-                <img src="images/vault-developed-note.png" alt="A developed spark with wiki-links showing idea connections">
-                <img src="images/vault-graph-zoomed.png" alt="Graph view zoomed to a single node with connections">
+            <div class="graph-wrapper fade-in" id="graph-container">
+                <canvas id="graph-canvas"></canvas>
+                <div class="graph-tooltip" id="graph-tooltip"></div>
             </div>
 
-            <div class="testimonial">
+            <div class="testimonial fade-in">
                 <p class="testimonial-text"><span class="testimonial-name">Anna</span> couldn't BELIEVE that The Idea Factory took her brain dump, turned it into something her clients had never heard before, and stored it away ready to use:</p>
-                <img src="images/testimonial-anna.png" alt="Anna testimonial screenshot" class="testimonial-image">
+                <img src="images/testimonial-anna.png" alt="Anna testimonial" class="testimonial-image">
             </div>
 
-            <h3>Your content will actually sound like YOU.</h3>
-            <p>Not like ChatGPT. Not like the template everyone else bought. Like you, on your best day, with your sharpest thinking — but consistently. Every single week.</p>
+            <h3 class="fade-in">See it in action: From Ideas to Content</h3>
+            <p class="fade-in">When it's time to publish, you pull from a vault of connected ideas. Claude AI — with full context of YOUR thinking — turns them into content in minutes.</p>
 
-            <div class="testimonial">
-                <p class="testimonial-text">Charlie used the Idea Factory to create a worldview so original and specific for his audience that it generated <strong>over 7k downloads</strong> on a lead magnet report.</p>
-                <img src="images/testimonial-charlie-1.png" alt="Charlie testimonial screenshot" class="testimonial-image">
-                <p style="margin-top: 24px;">But more importantly, he now feels like he has something that allows him to be more authentic, play to his strengths and create the business he wants - with a system that's the equivalent of <em>'Taking the Limitless Pill'</em></p>
-                <img src="images/testimonial-charlie-2.png" alt="Charlie testimonial screenshot 2" class="testimonial-image">
+            <!-- VIDEO PLACEHOLDER: benefit video 2 -->
+            <div class="video-placeholder fade-in">
+                <span>Benefit video coming soon</span>
             </div>
 
-            <h3>You'll create more content in less time.</h3>
-            <p>Coaches using The Idea Factory are publishing 20+ pieces a week across multiple platforms while spending LESS time than they used to spend on two posts. Because when your ideas are developed and connected, creating content is just the last step — and the easiest one.</p>
+            <div class="testimonial fade-in">
+                <p class="testimonial-text">Charlie used the Idea Factory to create a worldview so original and specific for his audience that it generated <strong>over <span class="counter" data-target="7000" data-suffix="" data-format="comma">0</span> downloads</strong> on a lead magnet report.</p>
+                <img src="images/testimonial-charlie-1.png" alt="Charlie testimonial" class="testimonial-image">
+                <p style="margin-top: 24px;">But more importantly, he now feels like he has something that allows him to be more authentic, play to his strengths and create the business he wants — with a system that's the equivalent of <em>'Taking the Limitless Pill'</em></p>
+                <img src="images/testimonial-charlie-2.png" alt="Charlie testimonial" class="testimonial-image">
+            </div>
 
-            <h3>Your content becomes a compounding asset.</h3>
-            <p>Most "systems" get worse over time. They get bloated, clunky, and you end up not bothering. The Idea Factory is the only content system that gets better the more you use it. After three months, you'll have so many connected ideas that content practically writes itself.</p>
+            <h3 class="fade-in">Your content becomes a compounding asset.</h3>
+            <p>Most "systems" get worse over time. Bloated, clunky — you end up not bothering. The Idea Factory is the only content system that gets better the more you use it. After three months, you'll have so many connected ideas that content practically writes itself.</p>
+
+            <!-- VIDEO PLACEHOLDER: benefit video 3 -->
+            <div class="video-placeholder fade-in">
+                <span>Benefit video coming soon</span>
+            </div>
         </section>
+    </div>
 
-        <hr>
+    <div class="inline-cta">
+        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s" class="cta-button">Get The Idea Factory — £297</a>
+    </div>
 
-        <!-- ============================================ -->
-        <!-- WHAT'S INSIDE                                -->
-        <!-- ============================================ -->
-        <section>
-            <h2>What's Inside The Idea Factory</h2>
+    <!-- ============ BIG FEATURE BREAKDOWN ============ -->
+    <section class="section-white">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What's Inside The Idea Factory</h2>
+            </div>
 
-            <div class="feature-section">
+            <div class="feature-card fade-in">
+                <span class="feature-label">Core System</span>
                 <h3>Active Idea Storage</h3>
-                <p>A complete Obsidian vault, pre-configured with a six-stage workflow.</p>
-                <p>Templates for every stage. Dashboards showing exactly where each idea sits and what needs attention next.</p>
-                <p>No more ideas dying in scattered notes across 17 apps.</p>
-                <p>This is your idea factory (literally). Everything in one place. Ready when you are.</p>
-                <img src="images/vault-dashboard.png" alt="Spark list dashboard showing idea titles" class="feature-image">
+                <p>A complete Obsidian vault, pre-configured with a six-stage workflow. Templates for every stage. Dashboards showing exactly where each idea sits and what needs attention next.</p>
+                <p>No more ideas dying in scattered notes across 17 apps. This is your idea factory — literally. Everything in one place. Ready when you are.</p>
+                <img src="images/vault-dashboard.png" alt="Spark list dashboard" class="feature-image">
             </div>
 
-            <div class="feature-section">
+            <div class="feature-card fade-in">
+                <span class="feature-label">Thinking Tools</span>
                 <h3>Deep Thinking Prompts</h3>
-                <p>At each stage, you'll find questions designed to push your thinking beyond the obvious.</p>
-                <p>These aren't generic "define your target audience" prompts.</p>
-                <p>They're specifically crafted for coaches who want to stand out.</p>
-                <p>The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
+                <p>At each stage, questions designed to push your thinking beyond the obvious. Not generic "define your target audience" prompts.</p>
+                <p>Specifically crafted for coaches who want to stand out. The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
             </div>
 
-            <div class="feature-section">
+            <div class="feature-card fade-in">
+                <span class="feature-label">AI Integration</span>
                 <h3>AI-Supercharged</h3>
-                <p>Full integration with Claude AI, built right into the vault.</p>
-                <p>But here's the difference:</p>
+                <p>Full integration with Claude AI, built right into the vault. But here's the difference:</p>
                 <p><strong class="burnt-orange">This AI has context.</strong></p>
-                <p>It knows your positioning. It understands your voice. It can see your connected ideas.</p>
-                <p>When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
-            </div>
-        </section>
-
-        <section>
-            <h3>Also Included:</h3>
-            <ul class="included-list">
-                <li>Video walkthrough of the complete system</li>
-                <li>Quick-start guide to get you capturing ideas immediately</li>
-                <li>Voice capture setup so you never lose a shower thought again</li>
-                <li>Content templates for posts, newsletters, and long-form</li>
-                <li>Direct access to me for questions and troubleshooting</li>
-            </ul>
-        </section>
-
-        <hr>
-
-        <!-- ============================================ -->
-        <!-- HOW IT WORKS (3 steps)                       -->
-        <!-- ============================================ -->
-        <div class="how-it-works">
-            <h2>How It Works</h2>
-
-            <div class="step">
-                <span class="step-number">Step 1</span>
-                <p class="step-title">Capture</p>
-                <p>An idea hits you — in a session, on a walk, in the shower. You capture it in seconds using voice, text, or a quick note. It goes straight into your Idea Factory. No more losing ideas across 17 different apps.</p>
+                <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
             </div>
 
-            <div class="step">
-                <span class="step-number">Step 2</span>
-                <p class="step-title">Connect</p>
-                <p>The system prompts you to develop your raw idea. Deep thinking questions push you beyond the obvious. And because all your ideas live in one place, you start seeing connections you'd never have spotted before. That's where the magic happens.</p>
-            </div>
-
-            <div class="step">
-                <span class="step-number">Step 3</span>
-                <p class="step-title">Create</p>
-                <p>When it's time to publish, you're not staring at a blank page. You're pulling from a vault of connected, developed ideas — and Claude AI (with full context of YOUR thinking) helps you turn them into scroll-stopping posts, newsletters, and long-form content in minutes.</p>
-            </div>
-
-            <div class="compound-note">
-                <p><strong>The more you use it, the better it gets.</strong> After one week, you'll have ideas ready to share. After one month, you'll create long-form content every week in under 30 minutes. After three months, your content will stand out from everyone else — without dancing on camera or screaming 'optimised hooks' in 2 seconds to grab attention.</p>
+            <div class="feature-card fade-in">
+                <span class="feature-label">Everything Else</span>
+                <h3>Also Included</h3>
+                <ul class="included-list">
+                    <li>Video walkthrough of the complete system</li>
+                    <li>Quick-start guide to get you capturing ideas immediately</li>
+                    <li>Voice capture setup so you never lose a shower thought again</li>
+                    <li>Content templates for posts, newsletters, and long-form</li>
+                    <li>Direct access to me for questions and troubleshooting</li>
+                </ul>
             </div>
         </div>
+    </section>
 
-        <div class="testimonial">
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section-dark how-it-works">
+        <div class="container-wide">
+            <div class="section-header fade-in">
+                <h2>How It Works</h2>
+            </div>
+
+            <div class="steps-grid fade-in">
+                <div class="step">
+                    <span class="step-number">01</span>
+                    <p class="step-title">Capture</p>
+                    <p>An idea hits you — in a session, on a walk, in the shower. You capture it in seconds using voice, text, or a quick note. It goes straight into your Idea Factory.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">02</span>
+                    <p class="step-title">Connect</p>
+                    <p>Deep thinking questions push you beyond the obvious. Because all your ideas live in one place, you start seeing connections you'd never have spotted before. That's where the magic happens.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">03</span>
+                    <p class="step-title">Create</p>
+                    <p>You're not staring at a blank page. You're pulling from a vault of connected, developed ideas — and Claude AI helps you turn them into scroll-stopping content in minutes.</p>
+                </div>
+            </div>
+
+            <div class="compound-note fade-in">
+                <p><strong>The more you use it, the better it gets.</strong> After one week, you'll have ideas ready to share. After one month, you'll create long-form content in under 30 minutes. After three months, your content will stand out from everyone else — without dancing on camera or screaming 'optimised hooks' to grab attention.</p>
+            </div>
+
+            <div class="hiw-video fade-in">
+                <video controls preload="metadata">
+                    <source src="video/how-it-works.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ JOSH TESTIMONIAL ============ -->
+    <div class="container">
+        <div class="testimonial fade-in">
             <p class="testimonial-text">And <span class="testimonial-name">Josh</span>? He admitted he didn't think he was <em>'using the Idea Factory properly.'</em></p>
-            <p><strong>Plot twist:</strong> He still 3x'd his content output using it his own way.</p>
-            <img src="images/testimonial-josh.jpg" alt="Josh testimonial screenshot" class="testimonial-image">
+            <p><strong>Plot twist:</strong> He still <span class="counter" data-target="3" data-suffix="x'd">0</span> his content output using it his own way.</p>
+            <img src="images/testimonial-josh.jpg" alt="Josh testimonial" class="testimonial-image">
         </div>
+    </div>
 
-        <hr>
+    <!-- ============ HONEST TRUTH ============ -->
+    <section class="section-white">
+        <div class="container">
+            <section class="fade-in">
+                <h2>The Honest Truth</h2>
+                <p>I'm not going to pretend this is some magic button. It's not a course you watch once and suddenly have 100 leads a day.</p>
+                <p>Implementing what's inside will take time. The system needs to be learnt, you need to capture ideas to make connections. Most people spend 2-3 hours getting set up and learning the workflow.</p>
+                <p>I've been very clear with the people I've sent it to so far:</p>
+                <p class="emphasis-block">When I send you your Idea Factory — it is the <em>worst</em> it will ever be.</p>
+                <p>It is bursting with potential — but it doesn't have your ideas in.</p>
+                <p>But that's what makes it so unique.</p>
+            </section>
+        </div>
+    </section>
 
-        <!-- ============================================ -->
-        <!-- THE HONEST TRUTH                             -->
-        <!-- ============================================ -->
-        <section>
-            <h2>The Honest Truth</h2>
-            <p>I'm not going to pretend this is some magic button. It's not a course that you watch once, implement, and you're suddenly Googling 'How to say no to 100s of leads in my niche per day.'</p>
-            <p>It's not a quick fix - implementing what is inside will take time. The system needs to be learnt, you need to capture the ideas to be able to make the connections. Most people spend 2-3 hours getting set up and learning the workflow.</p>
-            <p>In fact - I've been very clear with the people I've sent it to so far -</p>
-            <p class="emphasis-block">When I send you your Idea Factory - it is the <em>worst</em> it will ever be.</p>
-            <p>It is bursting with potential - but it doesn't have your ideas in.</p>
-            <p>But that's what makes it so unique.</p>
-        </section>
-
-        <hr>
-
-        <!-- ============================================ -->
-        <!-- CTA + PRICING                                -->
-        <!-- ============================================ -->
-        <section class="cta-section">
+    <!-- ============ PRICING CTA ============ -->
+    <section class="section-deep pricing-section">
+        <div class="fade-in">
             <h2>Ready to Build Your Idea Engine?</h2>
             <div class="price">£297</div>
             <p class="price-note">One-time payment. Lifetime access. All future updates included.</p>
-            <p class="price-note">(You'll also want a Claude subscription - £13/month - to unlock the AI features. Well worth it.)</p>
-            <a href="#" class="cta-button">Get The Idea Factory</a>
+            <p class="price-note">(You'll also want a Claude subscription — £13/month — to unlock the AI features. Well worth it.)</p>
+            <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s" class="cta-button">Get The Idea Factory</a>
             <p class="guarantee">30-day money back guarantee. If you set up the system, use it for 30 days, and don't feel like it's changed how you create content — email me and I'll refund you in full. No questions asked.</p>
-        </section>
-
-        <hr>
-
-        <!-- Three Options -->
-        <section class="options">
-            <h2>Three Options</h2>
-
-            <div class="option">
-                <p class="option-label">Option One:</p>
-                <p>Keep doing what you're doing. Stare at blank pages. Watch other coaches build audiences with worse ideas than yours. Waste your time scrolling and 'looking for inspiration', using valuable time you could spend in other parts of your business, only to post the same stuff everyone else posts.</p>
-            </div>
-
-            <div class="option">
-                <p class="option-label">Option Two:</p>
-                <p>You can build something yourself - You can download Obsidian, try and learn how to use it, spend hours on YouTube figuring out MCPs, AI connections and then the best way to store and manage all of your notes so you can find and connect them yourself. Probably doable in around 12 months of concerted effort.</p>
-            </div>
-
-            <div class="option">
-                <p class="option-label">Option Three:</p>
-                <p>Get the complete system, built and tested. Start capturing and developing ideas this week. Publish content that sounds like you — not like every other coach in your feed.</p>
-            </div>
-        </section>
-
-        <div class="inline-cta">
-            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
         </div>
+    </section>
 
-        <!-- FAQ -->
-        <section class="faq">
-            <h2>FAQ</h2>
-
-            <div class="faq-item">
-                <p class="faq-question">Do I need to be technical?</p>
-                <p class="faq-answer">Nope. Obsidian is free and straightforward to download, the vault is pre-configured and the walkthrough video shows you exactly what you should do.</p>
+    <!-- ============ THREE OPTIONS ============ -->
+    <div class="container">
+        <section class="options fade-in">
+            <h2>Three Options</h2>
+            <div class="option">
+                <p class="option-label">Option One: Keep doing what you're doing.</p>
+                <p>Stare at blank pages. Watch other coaches build audiences with worse ideas than yours. Waste time scrolling for 'inspiration', using valuable hours you could spend on other parts of your business, only to post the same stuff everyone else posts.</p>
             </div>
-
-            <div class="faq-item">
-                <p class="faq-question">What if I already use Notion/Evernote/Apple Notes?</p>
-                <p class="faq-answer">Most coaches who've bought the Idea Factory are - They either keep using them for other parts of their work, or they migrate everything over. There are lots of tools that work for different parts of your business, but for idea development and content creation, you'll want this system - as the workflow and AI integration are specifically designed for this purpose.</p>
+            <div class="option">
+                <p class="option-label">Option Two: Build something yourself.</p>
+                <p>Download Obsidian, learn how to use it, spend hours on YouTube figuring out MCPs, AI connections and the best way to store and manage notes. Probably doable in around 12 months of concerted effort.</p>
             </div>
-
-            <div class="faq-item">
-                <p class="faq-question">How is this different from just using ChatGPT?</p>
-                <p class="faq-answer">It comes down to one simple thing, and that is that ChatGPT gets worse with use, whereas The Idea Factory gets better with use over time. ChatGPT is designed in a way where you can give projects system prompts and you can prompt properly, but its memory gets worse over time. So ideas you spoke about a couple of weeks ago won't get surfaced no matter how much you prompt it. Also, eventually project chats do become full, and then once that happens, you lose all of the context that you've already given it. The Idea Factory, you never lose that because each file for each note is separate. Therefore, it can only improve with your use, with more ideas over time.</p>
-            </div>
-
-            <div class="faq-item">
-                <p class="faq-question">How does it use AI?</p>
-                <p class="faq-answer">There are different layers of AI use, and you can start small and learn as you go. It's recommended that you use Claude, as there are features that connect directly to the Idea Factory. You can ask Claude to search for notes, to edit ones you have, make connections between them and also to use them to help you write out ideas. More advanced uses include using 'Skills' to help you write, bring your ideas together, connect several ideas and help you surface insights that you can't actually see yourself.</p>
-            </div>
-
-            <div class="faq-item">
-                <p class="faq-question">What if I'm not a coach?</p>
-                <p class="faq-answer">This system works for anyone who shares ideas in content from their expertise - consultants, authors, course creators, thought leaders. If you need to turn ideas into content that attracts clients, this will work for you.</p>
-            </div>
-
-            <div class="faq-item">
-                <p class="faq-question">How long until I see results?</p>
-                <p class="faq-answer">Most people start capturing and developing ideas within the first day. Within two weeks, you'll have a growing vault of connected ideas. Within a month, you'll wonder how you ever created content without it.</p>
+            <div class="option">
+                <p class="option-label">Option Three: Get the complete system, built and tested.</p>
+                <p>Start capturing and developing ideas this week. Publish content that sounds like you — not like every other coach in your feed.</p>
             </div>
         </section>
-
-        <!-- Final CTA -->
-        <section class="final-cta">
-            <p>If you want to...</p>
-            <p><strong>Stop letting good ideas die in your notes app.</strong></p>
-            <p><strong>Stop publishing content that sounds like everyone else.</strong></p>
-            <p><strong>Stop staring at blank pages wondering what the hell to post.</strong></p>
-            <br>
-            <a href="#" class="cta-button">Get The Idea Factory — £297</a>
-        </section>
-
     </div>
+
+    <div class="inline-cta fade-in">
+        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s" class="cta-button">Get The Idea Factory — £297</a>
+    </div>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section-white">
+        <div class="container">
+            <section class="faq">
+                <h2 class="fade-in">FAQ</h2>
+                <div class="faq-item fade-in">
+                    <p class="faq-question">Do I need to be technical?</p>
+                    <p class="faq-answer">Nope. Obsidian is free and straightforward to download, the vault is pre-configured and the walkthrough video shows you exactly what to do.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <p class="faq-question">What if I already use Notion/Evernote/Apple Notes?</p>
+                    <p class="faq-answer">Most coaches who've bought the Idea Factory are. They either keep using them for other parts of their work, or migrate everything over. For idea development and content creation, you'll want this system — the workflow and AI integration are specifically designed for this purpose.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <p class="faq-question">How is this different from just using ChatGPT?</p>
+                    <p class="faq-answer">ChatGPT gets worse with use. The Idea Factory gets better. ChatGPT's memory degrades — ideas you discussed weeks ago won't surface. Project chats fill up and you lose all context. In the Idea Factory, every note is separate, so it can only improve with more ideas over time.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <p class="faq-question">How does it use AI?</p>
+                    <p class="faq-answer">Different layers, and you can start small. It's recommended you use Claude, as there are features that connect directly to the Idea Factory. You can ask Claude to search notes, edit them, make connections, and help you write. More advanced uses include 'Skills' that bring ideas together, connect them, and surface insights you can't see yourself.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <p class="faq-question">What if I'm not a coach?</p>
+                    <p class="faq-answer">This works for anyone who shares ideas from their expertise — consultants, authors, course creators, thought leaders. If you need to turn ideas into content that attracts clients, this will work for you.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <p class="faq-question">How long until I see results?</p>
+                    <p class="faq-answer">Most people start capturing and developing ideas within the first day. Within two weeks, you'll have a growing vault of connected ideas. Within a month, you'll wonder how you ever created content without it.</p>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta fade-in">
+        <p>If you want to...</p>
+        <p><strong>Stop letting good ideas die in your notes app.</strong></p>
+        <p><strong>Stop publishing content that sounds like everyone else.</strong></p>
+        <p><strong>Stop staring at blank pages wondering what the hell to post.</strong></p>
+        <br>
+        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s" class="cta-button">Get The Idea Factory — £297</a>
+    </section>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+    // ================================================
+    // SCROLL FADE-IN
+    // ================================================
+    const fadeObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+    // ================================================
+    // NUMBER COUNTERS
+    // ================================================
+    const counterObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting || e.target.dataset.done) return;
+            const el = e.target; el.dataset.done = '1';
+            const target = parseInt(el.dataset.target), suffix = el.dataset.suffix || '', useComma = el.dataset.format === 'comma';
+            const start = performance.now();
+            (function tick(now) {
+                const t = Math.min((now - start) / 1200, 1), eased = 1 - Math.pow(1 - t, 3);
+                const val = Math.round(eased * target);
+                el.textContent = (useComma ? val.toLocaleString() : val) + suffix;
+                if (t < 1) requestAnimationFrame(tick);
+            })(start);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+    // ================================================
+    // THREE.JS FORCE-DIRECTED GRAPH
+    // ================================================
+    (function() {
+        const container = document.getElementById('graph-container');
+        const canvas = document.getElementById('graph-canvas');
+        const tooltip = document.getElementById('graph-tooltip');
+        if (!container || !canvas) return;
+
+        const W = container.clientWidth, H = container.clientHeight;
+
+        const names = [
+            "A capture system trains the brain to see more",
+            "Writing is Thinking",
+            "All creative work is reassembled memory",
+            "Neurons That Fire Together Wire Together",
+            "Creativity is pattern recognition between unrelated domains",
+            "AI has democratised creativity",
+            "Every Action Is a Vote for Your Future Identity",
+            "The mind needs stretches of calm",
+            "Action Is the Entire Point of the Brain",
+            "A Mistake Budget Accelerates Learning",
+            "Fear and Creativity Are Conjoined Twins",
+            "Your first solution blinds you to every other option",
+            "Knowledge systems should get better over time",
+            "AI Won't Replace Good Coaches But It Will Expose Bad Ones",
+            "Brainstorming on a Schedule Is the Opposite of How Creativity Works",
+            "Memory evolved to prepare for the future",
+            "Recognising a good idea is a separate skill from generating one",
+            "Creative Ignorance Beats Creative Rebellion",
+            "The agentic era demands clearer intent",
+            "False Memories Are Adaptive Not Broken",
+            "Neuroticism feeds creativity rather than killing it",
+            "Efficiency then experience",
+            "Attention Is Power and Rumination Is Its Misuse",
+            "Critics Judge Your Worst Self Whilst Coaches See Your Potential Self",
+            "Domain expertise is the real moat",
+            "The Takeaway Close Is More Powerful Than Any Bonus",
+            "Each job has a status game",
+            "Smokers quit for status not health",
+            "We value what we build because building is identity construction",
+            "A complex strategy needs a single sentence",
+            "Power laws generate concentration",
+            "AI that removes cognitive effort can destroy capacity",
+            "Most people operate in career reactive mode",
+            "Acedia - The Quiet Disease of Under-Living",
+            "A Thousand Noes for a Few Precious Yeses",
+        ];
+
+        const edges = [
+            [0,1],[0,4],[0,12],[1,2],[1,8],[2,4],[2,3],[2,16],[3,8],[3,19],
+            [4,5],[4,17],[4,20],[5,13],[5,18],[5,31],[6,8],[6,28],[7,14],[7,33],
+            [8,9],[8,22],[9,34],[9,11],[10,20],[10,17],[11,16],[11,32],[12,0],[12,31],
+            [13,24],[13,18],[15,19],[15,2],[21,7],[21,33],[23,27],[23,25],[26,27],[26,28],
+            [29,30],[24,32],
+        ];
+
+        const S = 8;
+        const nodes = names.map(() => ({
+            x:(Math.random()-0.5)*S, y:(Math.random()-0.5)*S, z:(Math.random()-0.5)*S,
+            vx:0, vy:0, vz:0
+        }));
+
+        const cc = new Array(names.length).fill(0);
+        edges.forEach(([a,b]) => { cc[a]++; cc[b]++; });
+        const maxC = Math.max(...cc);
+
+        for (let iter = 0; iter < 200; iter++) {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i+1; j < nodes.length; j++) {
+                    const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, dz=nodes[i].z-nodes[j].z;
+                    const d = Math.sqrt(dx*dx+dy*dy+dz*dz)||0.01;
+                    const f = 0.8/(d*d);
+                    const fx=dx/d*f, fy=dy/d*f, fz=dz/d*f;
+                    nodes[i].vx+=fx; nodes[i].vy+=fy; nodes[i].vz+=fz;
+                    nodes[j].vx-=fx; nodes[j].vy-=fy; nodes[j].vz-=fz;
+                }
+                nodes[i].vx-=nodes[i].x*0.005;
+                nodes[i].vy-=nodes[i].y*0.005;
+                nodes[i].vz-=nodes[i].z*0.005;
+            }
+            edges.forEach(([a,b]) => {
+                const dx=nodes[b].x-nodes[a].x, dy=nodes[b].y-nodes[a].y, dz=nodes[b].z-nodes[a].z;
+                const d=Math.sqrt(dx*dx+dy*dy+dz*dz)||0.01;
+                const f=(d-2.2)*0.02;
+                const fx=dx/d*f, fy=dy/d*f, fz=dz/d*f;
+                nodes[a].vx+=fx; nodes[a].vy+=fy; nodes[a].vz+=fz;
+                nodes[b].vx-=fx; nodes[b].vy-=fy; nodes[b].vz-=fz;
+            });
+            for (const n of nodes) {
+                n.vx*=0.92; n.vy*=0.92; n.vz*=0.92;
+                n.x+=n.vx; n.y+=n.vy; n.z+=n.vz;
+            }
+        }
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, W/H, 0.1, 100);
+        camera.position.z = 14;
+
+        const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+        renderer.setSize(W, H);
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        renderer.setClearColor(0x2D2D2D);
+
+        const group = new THREE.Group();
+        scene.add(group);
+
+        const geo = new THREE.SphereGeometry(0.12, 16, 16);
+        const mat1 = new THREE.MeshBasicMaterial({color:0xBF572F});
+        const mat2 = new THREE.MeshBasicMaterial({color:0xE8884D});
+
+        const meshes = nodes.map((n,i) => {
+            const m = new THREE.Mesh(geo, cc[i]>3 ? mat2 : mat1);
+            m.scale.setScalar(0.8 + (cc[i]/maxC)*1.2);
+            m.position.set(n.x, n.y, n.z);
+            m.userData = {idx:i};
+            group.add(m);
+            return m;
+        });
+
+        const lmat = new THREE.LineBasicMaterial({color:0x555555, transparent:true, opacity:0.35});
+        edges.forEach(([a,b]) => {
+            const lg = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(nodes[a].x, nodes[a].y, nodes[a].z),
+                new THREE.Vector3(nodes[b].x, nodes[b].y, nodes[b].z),
+            ]);
+            group.add(new THREE.Line(lg, lmat));
+        });
+
+        let isDrag=false, sx=0, sy=0, ryOff=0, rxOff=0, ryD=0, rxD=0, autoRot=0;
+        const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+
+        container.addEventListener('mousedown', e => { isDrag=true; sx=e.clientX; sy=e.clientY; });
+        window.addEventListener('mousemove', e => { if(isDrag){ ryD=(e.clientX-sx)*0.005; rxD=(e.clientY-sy)*0.005; } });
+        window.addEventListener('mouseup', () => { if(isDrag){ ryOff+=ryD; rxOff+=rxD; ryD=0; rxD=0; } isDrag=false; });
+
+        container.addEventListener('mousemove', e => {
+            const r = container.getBoundingClientRect();
+            mouse.x = ((e.clientX-r.left)/r.width)*2-1;
+            mouse.y = -((e.clientY-r.top)/r.height)*2+1;
+            ray.setFromCamera(mouse, camera);
+            const hits = ray.intersectObjects(meshes);
+            if (hits.length) {
+                tooltip.textContent = names[hits[0].object.userData.idx];
+                tooltip.style.opacity = '1';
+                tooltip.style.left = (e.clientX-r.left+12)+'px';
+                tooltip.style.top = (e.clientY-r.top-32)+'px';
+            } else { tooltip.style.opacity='0'; }
+        });
+        container.addEventListener('mouseleave', () => { tooltip.style.opacity='0'; });
+
+        (function animate() {
+            requestAnimationFrame(animate);
+            if (!isDrag) autoRot += 0.002;
+            group.rotation.y = autoRot + ryOff + ryD;
+            group.rotation.x = rxOff + rxD;
+            renderer.render(scene, camera);
+        })();
+
+        new ResizeObserver(() => {
+            const w=container.clientWidth, h=container.clientHeight;
+            camera.aspect=w/h; camera.updateProjectionMatrix();
+            renderer.setSize(w,h);
+        }).observe(container);
+    })();
+    </script>
 </body>
 </html>
