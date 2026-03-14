@@ -56,7 +56,7 @@
         /* ---- HERO ---- */
         .hero-section {
             text-align: center;
-            padding: 100px 24px 80px;
+            padding: 20px 24px 80px;
             position: relative;
             overflow: hidden;
         }
@@ -75,13 +75,13 @@
         }
         @keyframes spotlightFade { to { opacity: 1; } }
 
-        .hero-section > * { position: relative; z-index: 1; }
+        .hero-section > *:not(.hero-spotlight) { position: relative; z-index: 1; }
 
         .hero-eyebrow {
             font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4.5px;
             color: var(--burnt-orange);
             margin-bottom: 24px;
         }
@@ -177,6 +177,15 @@
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
             overflow: hidden;
+            min-width: 320px;
+            text-align: center;
+        }
+        .cta-pulse {
+            animation: ctaPulse 2.5s ease-in-out 3;
+        }
+        @keyframes ctaPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(191,87,47,0.5); }
+            50% { box-shadow: 0 0 24px 8px rgba(191,87,47,0.3); }
         }
         .cta-button::before {
             content: '';
@@ -201,21 +210,32 @@
         /* ---- TESTIMONIALS ---- */
         .testimonial {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 40px;
             margin: 40px 0;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
             border: 1px solid rgba(0,0,0,0.04);
         }
         .section-dark .testimonial {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(235,228,218,0.1);
-            box-shadow: none;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }
         .section-dark .testimonial .testimonial-text { color: var(--cream); }
         .testimonial-text { font-size: 1rem; margin-bottom: 16px; line-height: 1.7; }
         .testimonial-image { width: 100%; border-radius: 12px; margin-top: 16px; }
         .testimonial-name { font-weight: 700; color: var(--burnt-orange); }
+        .testimonial-attribution {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--warm-cream);
+            font-size: 0.9rem;
+            color: var(--warm-grey);
+        }
+        .testimonial-attribution strong {
+            color: var(--burnt-orange);
+            font-weight: 700;
+        }
 
         /* ---- MISTAKES SECTION ---- */
         .mistake {
@@ -278,35 +298,8 @@
         .benefit-images.single { grid-template-columns: 1fr; }
         .benefit-images img { width: 100%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
 
-        /* 3D Graph */
-        .graph-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            border-radius: 16px;
-            overflow: hidden;
-            margin: 32px 0;
-            background: var(--charcoal);
-            cursor: grab;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-        }
-        .graph-wrapper:active { cursor: grabbing; }
-        .graph-wrapper canvas { display: block; }
-        .graph-tooltip {
-            position: absolute;
-            background: rgba(45,45,45,0.95);
-            color: var(--cream);
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.15s;
-            max-width: 280px;
-            line-height: 1.4;
-            z-index: 10;
-            border: 1px solid var(--burnt-orange);
-        }
+
+
 
         /* ---- FEATURES ---- */
         .feature-card {
@@ -316,7 +309,25 @@
             margin: 32px 0;
             box-shadow: 0 4px 24px rgba(0,0,0,0.06);
             border: 1px solid rgba(0,0,0,0.04);
+            border-left: 4px solid var(--warm-grey);
+            position: relative;
         }
+        .feature-card.border-orange { border-left-color: var(--burnt-orange); }
+        .feature-card.border-grey { border-left-color: var(--warm-grey); }
+        .feature-card.border-charcoal { border-left-color: var(--deep-charcoal); }
+        .feature-card.border-cream { border-left-color: var(--warm-cream); }
+        .feature-number {
+            font-family: 'Lora', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            opacity: 0.15;
+            margin-bottom: 8px;
+            display: block;
+            line-height: 1;
+        }
+        .feature-card.border-orange .feature-number { color: var(--burnt-orange); opacity: 0.3; }
+        .feature-card.border-charcoal .feature-number { color: var(--deep-charcoal); }
+        .feature-card.border-cream .feature-number { color: var(--warm-cream); opacity: 0.5; }
         .feature-card h3 {
             font-family: 'Lora', serif;
             font-size: 1.6rem;
@@ -449,23 +460,56 @@
         .price-note { font-size: 1rem; color: var(--warm-grey); margin-bottom: 16px; }
         .section-deep .price-note { color: rgba(235,228,218,0.6); }
         .guarantee {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--cream);
-            opacity: 0.7;
-            margin-top: 32px;
+            margin-top: 40px;
             max-width: 540px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            background: rgba(235,228,218,0.08);
+            border: 1px solid rgba(235,228,218,0.15);
+            border-radius: 12px;
+            padding: 24px 28px;
+        }
+        .guarantee-label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--burnt-orange);
+            margin-bottom: 8px;
+        }
+        .price-emphasis {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 8px;
         }
 
         /* ---- THREE OPTIONS ---- */
         .options { margin: 48px 0; }
-        .option {
-            padding: 32px 0;
-            border-bottom: 1px solid var(--warm-cream);
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
         }
-        .option:last-child { border-bottom: none; }
+        .option {
+            padding: 32px 28px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .option:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .option.option-highlight {
+            border: 2px solid var(--burnt-orange);
+            box-shadow: 0 8px 32px rgba(191,87,47,0.15);
+            position: relative;
+        }
         .option-label {
             font-family: 'Lora', serif;
             font-weight: 600;
@@ -473,6 +517,7 @@
             color: var(--burnt-orange);
             margin-bottom: 8px;
         }
+        .option p:last-child { margin-bottom: 0; }
 
         /* ---- FAQ ---- */
         .faq { margin: 48px 0; }
@@ -497,6 +542,36 @@
         }
         .section-dark .section-header p { color: rgba(235,228,218,0.7); }
 
+        /* ---- SECTION TRANSITIONS ---- */
+        .section-transition {
+            height: 64px;
+            position: relative;
+        }
+        .section-transition.cream-to-white {
+            background: linear-gradient(to bottom, var(--cream), var(--off-white));
+        }
+        .section-transition.white-to-cream {
+            background: linear-gradient(to bottom, var(--off-white), var(--cream));
+        }
+        .section-transition.cream-to-dark {
+            background: linear-gradient(to bottom, var(--cream), var(--charcoal));
+        }
+        .section-transition.dark-to-cream {
+            background: linear-gradient(to bottom, var(--charcoal), var(--cream));
+        }
+        .section-transition.cream-to-deep {
+            background: linear-gradient(to bottom, var(--cream), var(--deep-charcoal));
+        }
+        .section-transition.deep-to-cream {
+            background: linear-gradient(to bottom, var(--deep-charcoal), var(--cream));
+        }
+        .section-transition.white-to-dark {
+            background: linear-gradient(to bottom, var(--off-white), var(--charcoal));
+        }
+        .section-transition.dark-to-white {
+            background: linear-gradient(to bottom, var(--charcoal), var(--off-white));
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-headline { font-size: 2.4rem; }
@@ -511,6 +586,10 @@
             .testimonial { padding: 28px; }
             .mistake { padding: 28px; }
             .pricing-section { padding: 60px 20px; }
+            .options-grid { grid-template-columns: 1fr; }
+            .testimonial-image { max-height: 400px; object-fit: contain; }
+            .cta-button { min-width: auto; width: 100%; max-width: 320px; padding: 18px 32px; font-size: 1.05rem; }
+            .section-transition { height: 40px; }
         }
     </style>
 </head>
@@ -547,7 +626,7 @@
     </section>
 
     <div class="inline-cta">
-        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s?success_url=https://ideafactorysales.netlify.app/success" class="cta-button">Get The Idea Factory — £299</a>
+        <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s?success_url=https://ideafactorysales.netlify.app/success" class="cta-button cta-pulse">Get The Idea Factory — £299</a>
     </div>
 
     <!-- ============ ORIGIN STORY ============ -->
@@ -578,6 +657,8 @@
             <p class="emphasis-block burnt-orange">The Idea Factory puts you in that 2%.</p>
         </section>
     </div>
+
+    <div class="section-transition cream-to-white"></div>
 
     <!-- ============ 3 MISTAKES ============ -->
     <section class="section-white">
@@ -610,9 +691,13 @@
         </div>
     </section>
 
+    <div class="section-transition white-to-cream"></div>
+
     <div class="inline-cta">
         <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s?success_url=https://ideafactorysales.netlify.app/success" class="cta-button">Get The Idea Factory — £299</a>
     </div>
+
+    <div class="section-transition cream-to-dark"></div>
 
     <!-- ============ BIG BENEFIT SECTION ============ -->
     <section class="section-dark">
@@ -647,6 +732,8 @@
         </div>
     </section>
 
+    <div class="section-transition dark-to-cream"></div>
+
     <!-- ============ BENEFIT DEEP DIVES + TESTIMONIALS ============ -->
     <div class="container">
         <section>
@@ -657,36 +744,34 @@
                 <img src="images/vault-graph-full.png" alt="Full graph view of idea network">
             </div>
 
-            <!-- VIDEO PLACEHOLDER: benefit video 1 -->
-            <div class="video-placeholder fade-in">
-                <span>Benefit video coming soon</span>
+            <div class="benefit-images single fade-in">
+                <img src="images/vault-dashboard.png" alt="Idea Factory vault dashboard showing the six-stage workflow">
             </div>
 
             <div class="testimonial fade-in">
                 <p class="testimonial-text"><span class="testimonial-name">Luke</span> was just "playing around" with ideas in the Idea Factory. Within no time, he'd built a complete SYSTEM that showed his clients exactly how their check-ins were driving results:</p>
                 <img src="images/testimonial-luke-1.png" alt="Luke testimonial" class="testimonial-image">
                 <img src="images/testimonial-luke-2.png" alt="Luke testimonial" class="testimonial-image">
+                <p class="testimonial-attribution"><strong>Luke</strong> — Online Coach</p>
             </div>
 
             <h3 class="fade-in">See it in action: Self-Connecting Ideas</h3>
             <p class="fade-in">Watch how ideas that entered the vault weeks apart suddenly reveal they're about the same thing. This is where original content comes from.</p>
 
-            <div class="graph-wrapper fade-in" id="graph-container">
-                <canvas id="graph-canvas"></canvas>
-                <div class="graph-tooltip" id="graph-tooltip"></div>
-            </div>
+
+
 
             <div class="testimonial fade-in">
                 <p class="testimonial-text"><span class="testimonial-name">Anna</span> couldn't BELIEVE that The Idea Factory took her brain dump, turned it into something her clients had never heard before, and stored it away ready to use:</p>
                 <img src="images/testimonial-anna.png" alt="Anna testimonial" class="testimonial-image">
+                <p class="testimonial-attribution"><strong>Anna</strong> — Online Coach</p>
             </div>
 
             <h3 class="fade-in">See it in action: From Ideas to Content</h3>
             <p class="fade-in">When it's time to publish, you pull from a vault of connected ideas. Claude AI — with full context of YOUR thinking — turns them into content in minutes.</p>
 
-            <!-- VIDEO PLACEHOLDER: benefit video 2 -->
-            <div class="video-placeholder fade-in">
-                <span>Benefit video coming soon</span>
+            <div class="benefit-images single fade-in">
+                <img src="images/vault-developed-note.png" alt="A fully developed idea in the Idea Factory vault">
             </div>
 
             <div class="testimonial fade-in">
@@ -694,14 +779,15 @@
                 <img src="images/testimonial-charlie-1.png" alt="Charlie testimonial" class="testimonial-image">
                 <p style="margin-top: 24px;">But more importantly, he now feels like he has something that allows him to be more authentic, play to his strengths and create the business he wants — with a system that's the equivalent of <em>'Taking the Limitless Pill'</em></p>
                 <img src="images/testimonial-charlie-2.png" alt="Charlie testimonial" class="testimonial-image">
+                <p class="testimonial-attribution"><strong>Charlie</strong> — Online Coach</p>
             </div>
 
             <h3 class="fade-in">Your content becomes a compounding asset.</h3>
             <p>Most "systems" get worse over time. Bloated, clunky — you end up not bothering. The Idea Factory is the only content system that gets better the more you use it. After three months, you'll have so many connected ideas that content practically writes itself.</p>
 
-            <!-- VIDEO PLACEHOLDER: benefit video 3 -->
-            <div class="video-placeholder fade-in">
-                <span>Benefit video coming soon</span>
+            <div class="benefit-images fade-in">
+                <img src="images/vault-graph-zoomed.png" alt="Zoomed view of connected ideas in the vault graph">
+                <img src="images/vault-search.png" alt="Searching connected ideas in the vault">
             </div>
         </section>
     </div>
@@ -710,6 +796,8 @@
         <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s?success_url=https://ideafactorysales.netlify.app/success" class="cta-button">Get The Idea Factory — £299</a>
     </div>
 
+    <div class="section-transition cream-to-white"></div>
+
     <!-- ============ BIG FEATURE BREAKDOWN ============ -->
     <section class="section-white">
         <div class="container">
@@ -717,7 +805,8 @@
                 <h2>What's Inside The Idea Factory</h2>
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card border-orange fade-in">
+                <span class="feature-number">01</span>
                 <span class="feature-label">Core System</span>
                 <h3>Active Idea Storage</h3>
                 <p>A complete Obsidian vault, pre-configured with a six-stage workflow. Templates for every stage. Dashboards showing exactly where each idea sits and what needs attention next.</p>
@@ -725,14 +814,16 @@
                 <img src="images/vault-dashboard.png" alt="Spark list dashboard" class="feature-image">
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card border-grey fade-in">
+                <span class="feature-number">02</span>
                 <span class="feature-label">Thinking Tools</span>
                 <h3>Deep Thinking Prompts</h3>
                 <p>At each stage, questions designed to push your thinking beyond the obvious. Not generic "define your target audience" prompts.</p>
                 <p>Specifically crafted for coaches who want to stand out. The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card border-charcoal fade-in">
+                <span class="feature-number">03</span>
                 <span class="feature-label">AI Integration</span>
                 <h3>AI-Supercharged</h3>
                 <p>Full integration with Claude AI, built right into the vault. But here's the difference:</p>
@@ -740,7 +831,8 @@
                 <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card border-cream fade-in">
+                <span class="feature-number">04</span>
                 <span class="feature-label">Everything Else</span>
                 <h3>Also Included</h3>
                 <ul class="included-list">
@@ -753,6 +845,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-transition white-to-dark"></div>
 
     <!-- ============ HOW IT WORKS ============ -->
     <section class="section-dark how-it-works">
@@ -791,14 +885,19 @@
         </div>
     </section>
 
+    <div class="section-transition dark-to-cream"></div>
+
     <!-- ============ JOSH TESTIMONIAL ============ -->
     <div class="container">
         <div class="testimonial fade-in">
             <p class="testimonial-text">And <span class="testimonial-name">Josh</span>? He admitted he didn't think he was <em>'using the Idea Factory properly.'</em></p>
             <p><strong>Plot twist:</strong> He still <span class="counter" data-target="3" data-suffix="x'd">0</span> his content output using it his own way.</p>
             <img src="images/testimonial-josh.jpg" alt="Josh testimonial" class="testimonial-image">
+            <p class="testimonial-attribution"><strong>Josh</strong> — Online Coach</p>
         </div>
     </div>
+
+    <div class="section-transition cream-to-white"></div>
 
     <!-- ============ HONEST TRUTH ============ -->
     <section class="section-white">
@@ -815,33 +914,43 @@
         </div>
     </section>
 
+    <div class="section-transition cream-to-deep"></div>
+
     <!-- ============ PRICING CTA ============ -->
     <section class="section-deep pricing-section">
         <div class="fade-in">
             <h2>Ready to Build Your Idea Engine?</h2>
             <div class="price">£299</div>
-            <p class="price-note">One-time payment. Lifetime access. All future updates included.</p>
+            <p class="price-emphasis">One-time payment. Yours forever.</p>
+            <p class="price-note">Lifetime access. All future updates included.</p>
             <p class="price-note">(You'll also want a Claude subscription — £13/month — to unlock the AI features. Well worth it.)</p>
             <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s?success_url=https://ideafactorysales.netlify.app/success" class="cta-button">Get The Idea Factory</a>
-            <p class="guarantee">30-day money back guarantee. If you set up the system, use it for 30 days, and don't feel like it's changed how you create content — email me and I'll refund you in full. No questions asked.</p>
+            <div class="guarantee">
+                <span class="guarantee-label">30-Day Guarantee</span>
+                If you set up the system, use it for 30 days, and don't feel like it's changed how you create content — email me and I'll refund you in full. No questions asked.
+            </div>
         </div>
     </section>
+
+    <div class="section-transition deep-to-cream"></div>
 
     <!-- ============ THREE OPTIONS ============ -->
     <div class="container">
         <section class="options fade-in">
             <h2>Three Options</h2>
-            <div class="option">
-                <p class="option-label">Option One: Keep doing what you're doing.</p>
-                <p>Stare at blank pages. Watch other coaches build audiences with worse ideas than yours. Waste time scrolling for 'inspiration', using valuable hours you could spend on other parts of your business, only to post the same stuff everyone else posts.</p>
-            </div>
-            <div class="option">
-                <p class="option-label">Option Two: Build something yourself.</p>
-                <p>Download Obsidian, learn how to use it, spend hours on YouTube figuring out MCPs, AI connections and the best way to store and manage notes. Probably doable in around 12 months of concerted effort.</p>
-            </div>
-            <div class="option">
-                <p class="option-label">Option Three: Get the complete system, built and tested.</p>
-                <p>Start capturing and developing ideas this week. Publish content that sounds like you — not like every other coach in your feed.</p>
+            <div class="options-grid">
+                <div class="option">
+                    <p class="option-label">Option One: Keep doing what you're doing.</p>
+                    <p>Stare at blank pages. Watch other coaches build audiences with worse ideas than yours. Waste time scrolling for 'inspiration', using valuable hours you could spend on other parts of your business, only to post the same stuff everyone else posts.</p>
+                </div>
+                <div class="option">
+                    <p class="option-label">Option Two: Build something yourself.</p>
+                    <p>Download Obsidian, learn how to use it, spend hours on YouTube figuring out MCPs, AI connections and the best way to store and manage notes. Probably doable in around 12 months of concerted effort.</p>
+                </div>
+                <div class="option option-highlight">
+                    <p class="option-label">Option Three: Get the complete system, built and tested.</p>
+                    <p>Start capturing and developing ideas this week. Publish content that sounds like you — not like every other coach in your feed.</p>
+                </div>
             </div>
         </section>
     </div>
@@ -849,6 +958,8 @@
     <div class="inline-cta fade-in">
         <a href="https://buy.stripe.com/5kQfZh4Ya3AGbT4fyzd7q0s?success_url=https://ideafactorysales.netlify.app/success" class="cta-button">Get The Idea Factory — £299</a>
     </div>
+
+    <div class="section-transition cream-to-white"></div>
 
     <!-- ============ FAQ ============ -->
     <section class="section-white">
@@ -894,7 +1005,8 @@
     </section>
 
     <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
     <script>
     // ================================================
     // SCROLL FADE-IN
@@ -923,171 +1035,8 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
 
-    // ================================================
-    // THREE.JS FORCE-DIRECTED GRAPH
-    // ================================================
-    (function() {
-        const container = document.getElementById('graph-container');
-        const canvas = document.getElementById('graph-canvas');
-        const tooltip = document.getElementById('graph-tooltip');
-        if (!container || !canvas) return;
 
-        const W = container.clientWidth, H = container.clientHeight;
 
-        const names = [
-            "A capture system trains the brain to see more",
-            "Writing is Thinking",
-            "All creative work is reassembled memory",
-            "Neurons That Fire Together Wire Together",
-            "Creativity is pattern recognition between unrelated domains",
-            "AI has democratised creativity",
-            "Every Action Is a Vote for Your Future Identity",
-            "The mind needs stretches of calm",
-            "Action Is the Entire Point of the Brain",
-            "A Mistake Budget Accelerates Learning",
-            "Fear and Creativity Are Conjoined Twins",
-            "Your first solution blinds you to every other option",
-            "Knowledge systems should get better over time",
-            "AI Won't Replace Good Coaches But It Will Expose Bad Ones",
-            "Brainstorming on a Schedule Is the Opposite of How Creativity Works",
-            "Memory evolved to prepare for the future",
-            "Recognising a good idea is a separate skill from generating one",
-            "Creative Ignorance Beats Creative Rebellion",
-            "The agentic era demands clearer intent",
-            "False Memories Are Adaptive Not Broken",
-            "Neuroticism feeds creativity rather than killing it",
-            "Efficiency then experience",
-            "Attention Is Power and Rumination Is Its Misuse",
-            "Critics Judge Your Worst Self Whilst Coaches See Your Potential Self",
-            "Domain expertise is the real moat",
-            "The Takeaway Close Is More Powerful Than Any Bonus",
-            "Each job has a status game",
-            "Smokers quit for status not health",
-            "We value what we build because building is identity construction",
-            "A complex strategy needs a single sentence",
-            "Power laws generate concentration",
-            "AI that removes cognitive effort can destroy capacity",
-            "Most people operate in career reactive mode",
-            "Acedia - The Quiet Disease of Under-Living",
-            "A Thousand Noes for a Few Precious Yeses",
-        ];
-
-        const edges = [
-            [0,1],[0,4],[0,12],[1,2],[1,8],[2,4],[2,3],[2,16],[3,8],[3,19],
-            [4,5],[4,17],[4,20],[5,13],[5,18],[5,31],[6,8],[6,28],[7,14],[7,33],
-            [8,9],[8,22],[9,34],[9,11],[10,20],[10,17],[11,16],[11,32],[12,0],[12,31],
-            [13,24],[13,18],[15,19],[15,2],[21,7],[21,33],[23,27],[23,25],[26,27],[26,28],
-            [29,30],[24,32],
-        ];
-
-        const S = 8;
-        const nodes = names.map(() => ({
-            x:(Math.random()-0.5)*S, y:(Math.random()-0.5)*S, z:(Math.random()-0.5)*S,
-            vx:0, vy:0, vz:0
-        }));
-
-        const cc = new Array(names.length).fill(0);
-        edges.forEach(([a,b]) => { cc[a]++; cc[b]++; });
-        const maxC = Math.max(...cc);
-
-        for (let iter = 0; iter < 200; iter++) {
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i+1; j < nodes.length; j++) {
-                    const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, dz=nodes[i].z-nodes[j].z;
-                    const d = Math.sqrt(dx*dx+dy*dy+dz*dz)||0.01;
-                    const f = 0.8/(d*d);
-                    const fx=dx/d*f, fy=dy/d*f, fz=dz/d*f;
-                    nodes[i].vx+=fx; nodes[i].vy+=fy; nodes[i].vz+=fz;
-                    nodes[j].vx-=fx; nodes[j].vy-=fy; nodes[j].vz-=fz;
-                }
-                nodes[i].vx-=nodes[i].x*0.005;
-                nodes[i].vy-=nodes[i].y*0.005;
-                nodes[i].vz-=nodes[i].z*0.005;
-            }
-            edges.forEach(([a,b]) => {
-                const dx=nodes[b].x-nodes[a].x, dy=nodes[b].y-nodes[a].y, dz=nodes[b].z-nodes[a].z;
-                const d=Math.sqrt(dx*dx+dy*dy+dz*dz)||0.01;
-                const f=(d-2.2)*0.02;
-                const fx=dx/d*f, fy=dy/d*f, fz=dz/d*f;
-                nodes[a].vx+=fx; nodes[a].vy+=fy; nodes[a].vz+=fz;
-                nodes[b].vx-=fx; nodes[b].vy-=fy; nodes[b].vz-=fz;
-            });
-            for (const n of nodes) {
-                n.vx*=0.92; n.vy*=0.92; n.vz*=0.92;
-                n.x+=n.vx; n.y+=n.vy; n.z+=n.vz;
-            }
-        }
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(50, W/H, 0.1, 100);
-        camera.position.z = 14;
-
-        const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
-        renderer.setSize(W, H);
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-        renderer.setClearColor(0x2D2D2D);
-
-        const group = new THREE.Group();
-        scene.add(group);
-
-        const geo = new THREE.SphereGeometry(0.12, 16, 16);
-        const mat1 = new THREE.MeshBasicMaterial({color:0xBF572F});
-        const mat2 = new THREE.MeshBasicMaterial({color:0xE8884D});
-
-        const meshes = nodes.map((n,i) => {
-            const m = new THREE.Mesh(geo, cc[i]>3 ? mat2 : mat1);
-            m.scale.setScalar(0.8 + (cc[i]/maxC)*1.2);
-            m.position.set(n.x, n.y, n.z);
-            m.userData = {idx:i};
-            group.add(m);
-            return m;
-        });
-
-        const lmat = new THREE.LineBasicMaterial({color:0x555555, transparent:true, opacity:0.35});
-        edges.forEach(([a,b]) => {
-            const lg = new THREE.BufferGeometry().setFromPoints([
-                new THREE.Vector3(nodes[a].x, nodes[a].y, nodes[a].z),
-                new THREE.Vector3(nodes[b].x, nodes[b].y, nodes[b].z),
-            ]);
-            group.add(new THREE.Line(lg, lmat));
-        });
-
-        let isDrag=false, sx=0, sy=0, ryOff=0, rxOff=0, ryD=0, rxD=0, autoRot=0;
-        const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
-
-        container.addEventListener('mousedown', e => { isDrag=true; sx=e.clientX; sy=e.clientY; });
-        window.addEventListener('mousemove', e => { if(isDrag){ ryD=(e.clientX-sx)*0.005; rxD=(e.clientY-sy)*0.005; } });
-        window.addEventListener('mouseup', () => { if(isDrag){ ryOff+=ryD; rxOff+=rxD; ryD=0; rxD=0; } isDrag=false; });
-
-        container.addEventListener('mousemove', e => {
-            const r = container.getBoundingClientRect();
-            mouse.x = ((e.clientX-r.left)/r.width)*2-1;
-            mouse.y = -((e.clientY-r.top)/r.height)*2+1;
-            ray.setFromCamera(mouse, camera);
-            const hits = ray.intersectObjects(meshes);
-            if (hits.length) {
-                tooltip.textContent = names[hits[0].object.userData.idx];
-                tooltip.style.opacity = '1';
-                tooltip.style.left = (e.clientX-r.left+12)+'px';
-                tooltip.style.top = (e.clientY-r.top-32)+'px';
-            } else { tooltip.style.opacity='0'; }
-        });
-        container.addEventListener('mouseleave', () => { tooltip.style.opacity='0'; });
-
-        (function animate() {
-            requestAnimationFrame(animate);
-            if (!isDrag) autoRot += 0.002;
-            group.rotation.y = autoRot + ryOff + ryD;
-            group.rotation.x = rxOff + rxD;
-            renderer.render(scene, camera);
-        })();
-
-        new ResizeObserver(() => {
-            const w=container.clientWidth, h=container.clientHeight;
-            camera.aspect=w/h; camera.updateProjectionMatrix();
-            renderer.setSize(w,h);
-        }).observe(container);
-    })();
     </script>
 </body>
 </html>
