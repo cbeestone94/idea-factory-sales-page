@@ -30,8 +30,8 @@
         }
 
         /* ---- LAYOUT ---- */
-        .container { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
-        .container-wide { max-width: 960px; margin: 0 auto; padding: 80px 24px; }
+        .container { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
+        .container-wide { max-width: 960px; margin: 0 auto; padding: 60px 24px; }
 
         .section-dark {
             background: var(--charcoal);
@@ -144,7 +144,7 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--burnt-orange);
-            margin: 40px 0 16px 0;
+            margin: 32px 0 16px 0;
         }
 
         p { margin-bottom: 20px; }
@@ -166,7 +166,10 @@
 
         /* ---- CTA BUTTON ---- */
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             background: var(--burnt-orange);
             color: white;
             padding: 20px 48px;
@@ -174,11 +177,17 @@
             font-weight: 700;
             text-decoration: none;
             border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             position: relative;
             overflow: hidden;
             min-width: 320px;
             text-align: center;
+        }
+        .cta-button::after {
+            content: '\2192';
+            font-size: 1.3rem;
+            transition: transform 0.25s ease;
+            display: inline-block;
         }
         .cta-pulse {
             animation: ctaPulse 2.5s ease-in-out 3;
@@ -198,10 +207,11 @@
             transition: width 0.4s ease, height 0.4s ease;
             pointer-events: none;
         }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(191,87,47,0.5); }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(191,87,47,0.45), 0 4px 12px rgba(191,87,47,0.2); }
+        .cta-button:hover::after { transform: translateX(4px); }
         .cta-button:hover::before { width: 300px; height: 300px; }
 
-        .inline-cta { text-align: center; padding: 48px 24px; }
+        .inline-cta { text-align: center; padding: 32px 24px; }
 
         /* ---- QUOTE LIST ---- */
         .quote-list { list-style: none; padding: 0; margin: 24px 0; font-style: italic; color: var(--warm-grey); }
@@ -212,15 +222,28 @@
             background: white;
             border-radius: 20px;
             padding: 40px;
-            margin: 40px 0;
+            margin: 28px 0;
             box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
             border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+        }
+        .testimonial::before {
+            content: '\201C';
+            font-family: 'Lora', serif;
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--burnt-orange);
+            opacity: 0.15;
+            position: absolute;
+            top: 16px;
+            left: 28px;
         }
         .section-dark .testimonial {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(235,228,218,0.1);
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }
+        .section-dark .testimonial::before { color: var(--cream); opacity: 0.1; }
         .section-dark .testimonial .testimonial-text { color: var(--cream); }
         .testimonial-text { font-size: 1rem; margin-bottom: 16px; line-height: 1.7; }
         .testimonial-image { width: 100%; border-radius: 12px; margin-top: 16px; }
@@ -231,6 +254,19 @@
             border-top: 1px solid var(--warm-cream);
             font-size: 0.9rem;
             color: var(--warm-grey);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-attribution::before {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--burnt-orange), #E8884D);
+            flex-shrink: 0;
+            opacity: 0.8;
         }
         .testimonial-attribution strong {
             color: var(--burnt-orange);
@@ -241,7 +277,7 @@
         .mistake {
             background: white;
             padding: 40px;
-            margin: 32px 0;
+            margin: 24px 0;
             border-radius: 16px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.06);
             border: 1px solid rgba(0,0,0,0.04);
@@ -265,7 +301,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 32px;
-            margin: 48px 0;
+            margin: 32px 0;
         }
         .benefit-card {
             background: white;
@@ -306,16 +342,36 @@
             background: white;
             border-radius: 16px;
             padding: 48px 40px;
-            margin: 32px 0;
+            margin: 24px 0;
             box-shadow: 0 4px 24px rgba(0,0,0,0.06);
             border: 1px solid rgba(0,0,0,0.04);
             border-left: 4px solid var(--warm-grey);
             position: relative;
         }
-        .feature-card.border-orange { border-left-color: var(--burnt-orange); }
+        .feature-card.border-orange {
+            border-left-color: var(--burnt-orange);
+            border-left-width: 5px;
+            padding: 56px 48px;
+            box-shadow: 0 8px 40px rgba(191,87,47,0.1), 0 2px 8px rgba(0,0,0,0.04);
+        }
         .feature-card.border-grey { border-left-color: var(--warm-grey); }
         .feature-card.border-charcoal { border-left-color: var(--deep-charcoal); }
         .feature-card.border-cream { border-left-color: var(--warm-cream); }
+        .feature-supporting-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .feature-supporting-grid .feature-card {
+            margin: 0;
+            padding: 32px 24px;
+        }
+        .feature-supporting-grid .feature-card h3 {
+            font-size: 1.25rem;
+        }
+        .feature-supporting-grid .feature-card p {
+            font-size: 0.92rem;
+        }
         .feature-number {
             font-family: 'Lora', serif;
             font-size: 2.4rem;
@@ -325,7 +381,7 @@
             display: block;
             line-height: 1;
         }
-        .feature-card.border-orange .feature-number { color: var(--burnt-orange); opacity: 0.3; }
+        .feature-card.border-orange .feature-number { color: var(--burnt-orange); opacity: 0.3; font-size: 3rem; }
         .feature-card.border-charcoal .feature-number { color: var(--deep-charcoal); }
         .feature-card.border-cream .feature-number { color: var(--warm-cream); opacity: 0.5; }
         .feature-card h3 {
@@ -335,6 +391,7 @@
             margin: 0 0 16px 0;
             font-weight: 600;
         }
+        .feature-card.border-orange h3 { font-size: 1.8rem; }
         .feature-card .feature-label {
             font-size: 0.8rem;
             font-weight: 600;
@@ -377,26 +434,58 @@
 
         /* ---- HOW IT WORKS ---- */
         .how-it-works {
-            padding: 80px 0;
+            padding: 60px 0;
         }
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-top: 48px;
+            margin-top: 36px;
+            position: relative;
+        }
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(16.66% + 28px);
+            right: calc(16.66% + 28px);
+            height: 2px;
+            background: linear-gradient(to right, var(--burnt-orange), rgba(191,87,47,0.3));
+            z-index: 0;
         }
         .step {
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         .step-number {
             font-family: 'Lora', serif;
-            font-size: 3.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: var(--burnt-orange);
-            opacity: 0.25;
-            display: block;
-            margin-bottom: 16px;
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid var(--burnt-orange);
+            background: var(--charcoal);
+            margin: 0 auto 20px;
             line-height: 1;
+            opacity: 1;
+        }
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: -26px;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid var(--burnt-orange);
+            border-right: 2px solid var(--burnt-orange);
+            transform: rotate(45deg);
+            opacity: 0.6;
         }
         .step-title {
             font-weight: 700;
@@ -406,8 +495,8 @@
         }
         .step p { color: var(--cream); opacity: 0.8; font-size: 0.95rem; }
         .compound-note {
-            margin-top: 48px;
-            padding-top: 40px;
+            margin-top: 36px;
+            padding-top: 32px;
             border-top: 1px solid rgba(235,228,218,0.15);
             text-align: center;
             max-width: 720px;
@@ -448,7 +537,7 @@
         /* ---- PRICING CTA ---- */
         .pricing-section {
             text-align: center;
-            padding: 80px 24px;
+            padding: 60px 24px;
         }
         .price {
             font-family: 'Lora', serif;
@@ -504,11 +593,30 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .option:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .option.option-dimmed {
+            opacity: 0.55;
+            background: var(--off-white);
+        }
+        .option.option-dimmed:hover { opacity: 0.75; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         .option.option-highlight {
             border: 2px solid var(--burnt-orange);
             box-shadow: 0 8px 32px rgba(191,87,47,0.15);
             position: relative;
+            transform: scale(1.03);
+            background: white;
+        }
+        .option.option-highlight:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(191,87,47,0.2); }
+        .option-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: white;
+            background: var(--burnt-orange);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
         }
         .option-label {
             font-family: 'Lora', serif;
@@ -517,15 +625,59 @@
             color: var(--burnt-orange);
             margin-bottom: 8px;
         }
+        .option.option-dimmed .option-label { color: var(--warm-grey); }
         .option p:last-child { margin-bottom: 0; }
 
         /* ---- FAQ ---- */
         .faq { margin: 48px 0; }
-        .faq-item { margin-bottom: 32px; }
-        .faq-question { font-weight: 700; color: var(--charcoal); margin-bottom: 8px; font-size: 1.05rem; }
-        .faq-answer { color: var(--warm-grey); }
+        .faq-item {
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--warm-cream);
+        }
+        .faq-item:first-of-type {
+            border-top: 1px solid var(--warm-cream);
+        }
+        .faq-question {
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--burnt-orange); }
+        .faq-question::after {
+            content: '+';
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--burnt-orange);
+            flex-shrink: 0;
+            margin-left: 24px;
+            transition: transform 0.3s ease;
+            line-height: 1;
+        }
+        .faq-item.active .faq-question::after {
+            content: '\2212';
+        }
+        .faq-answer {
+            color: var(--warm-grey);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding-bottom 0.35s ease;
+            padding-bottom: 0;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 20px;
+        }
 
-        .final-cta { text-align: center; padding: 80px 24px; }
+        .final-cta { text-align: center; padding: 48px 24px; }
         .final-cta p { font-size: 1.2rem; margin-bottom: 16px; }
 
         hr { border: none; height: 1px; background: var(--warm-cream); margin: 0; }
@@ -533,7 +685,7 @@
         .text-center { text-align: center; }
         .section-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 36px;
         }
         .section-header p {
             color: var(--warm-grey);
@@ -544,32 +696,8 @@
 
         /* ---- SECTION TRANSITIONS ---- */
         .section-transition {
-            height: 64px;
+            height: 0;
             position: relative;
-        }
-        .section-transition.cream-to-white {
-            background: linear-gradient(to bottom, var(--cream), var(--off-white));
-        }
-        .section-transition.white-to-cream {
-            background: linear-gradient(to bottom, var(--off-white), var(--cream));
-        }
-        .section-transition.cream-to-dark {
-            background: linear-gradient(to bottom, var(--cream), var(--charcoal));
-        }
-        .section-transition.dark-to-cream {
-            background: linear-gradient(to bottom, var(--charcoal), var(--cream));
-        }
-        .section-transition.cream-to-deep {
-            background: linear-gradient(to bottom, var(--cream), var(--deep-charcoal));
-        }
-        .section-transition.deep-to-cream {
-            background: linear-gradient(to bottom, var(--deep-charcoal), var(--cream));
-        }
-        .section-transition.white-to-dark {
-            background: linear-gradient(to bottom, var(--off-white), var(--charcoal));
-        }
-        .section-transition.dark-to-white {
-            background: linear-gradient(to bottom, var(--charcoal), var(--off-white));
         }
 
         /* Responsive */
@@ -578,18 +706,20 @@
             .hero-section { padding: 60px 20px 60px; }
             h2 { font-size: 1.8rem; }
             .price { font-size: 3rem; }
-            .container, .container-wide { padding: 48px 20px; }
+            .container, .container-wide { padding: 36px 20px; }
             .benefit-grid { grid-template-columns: 1fr; gap: 20px; }
             .steps-grid { grid-template-columns: 1fr; gap: 32px; }
             .benefit-images { grid-template-columns: 1fr; }
             .feature-card { padding: 32px 24px; }
+            .feature-supporting-grid { grid-template-columns: 1fr; }
+            .feature-card.border-orange { padding: 32px 24px; }
             .testimonial { padding: 28px; }
             .mistake { padding: 28px; }
-            .pricing-section { padding: 60px 20px; }
+            .pricing-section { padding: 48px 20px; }
             .options-grid { grid-template-columns: 1fr; }
             .testimonial-image { max-height: 400px; object-fit: contain; }
             .cta-button { min-width: auto; width: 100%; max-width: 320px; padding: 18px 32px; font-size: 1.05rem; }
-            .section-transition { height: 40px; }
+            .section-transition { height: 0; }
         }
     </style>
 </head>
@@ -814,34 +944,36 @@
                 <img src="images/vault-dashboard.png" alt="Spark list dashboard" class="feature-image">
             </div>
 
-            <div class="feature-card border-grey fade-in">
-                <span class="feature-number">02</span>
-                <span class="feature-label">Thinking Tools</span>
-                <h3>Deep Thinking Prompts</h3>
-                <p>At each stage, questions designed to push your thinking beyond the obvious. Not generic "define your target audience" prompts.</p>
-                <p>Specifically crafted for coaches who want to stand out. The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
-            </div>
+            <div class="feature-supporting-grid fade-in">
+                <div class="feature-card border-grey">
+                    <span class="feature-number">02</span>
+                    <span class="feature-label">Thinking Tools</span>
+                    <h3>Deep Thinking Prompts</h3>
+                    <p>At each stage, questions designed to push your thinking beyond the obvious. Not generic "define your target audience" prompts.</p>
+                    <p>Specifically crafted for coaches who want to stand out. The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
+                </div>
 
-            <div class="feature-card border-charcoal fade-in">
-                <span class="feature-number">03</span>
-                <span class="feature-label">AI Integration</span>
-                <h3>AI-Supercharged</h3>
-                <p>Full integration with Claude AI, built right into the vault. But here's the difference:</p>
-                <p><strong class="burnt-orange">This AI has context.</strong></p>
-                <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
-            </div>
+                <div class="feature-card border-charcoal">
+                    <span class="feature-number">03</span>
+                    <span class="feature-label">AI Integration</span>
+                    <h3>AI-Supercharged</h3>
+                    <p>Full integration with Claude AI, built right into the vault. But here's the difference:</p>
+                    <p><strong class="burnt-orange">This AI has context.</strong></p>
+                    <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
+                </div>
 
-            <div class="feature-card border-cream fade-in">
-                <span class="feature-number">04</span>
-                <span class="feature-label">Everything Else</span>
-                <h3>Also Included</h3>
-                <ul class="included-list">
-                    <li>Video walkthrough of the complete system</li>
-                    <li>Quick-start guide to get you capturing ideas immediately</li>
-                    <li>Voice capture setup so you never lose a shower thought again</li>
-                    <li>Content templates for posts, newsletters, and long-form</li>
-                    <li>Direct access to me for questions and troubleshooting</li>
-                </ul>
+                <div class="feature-card border-cream">
+                    <span class="feature-number">04</span>
+                    <span class="feature-label">Everything Else</span>
+                    <h3>Also Included</h3>
+                    <ul class="included-list">
+                        <li>Video walkthrough of the complete system</li>
+                        <li>Quick-start guide to get you capturing ideas immediately</li>
+                        <li>Voice capture setup so you never lose a shower thought again</li>
+                        <li>Content templates for posts, newsletters, and long-form</li>
+                        <li>Direct access to me for questions and troubleshooting</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -939,15 +1071,16 @@
         <section class="options fade-in">
             <h2>Three Options</h2>
             <div class="options-grid">
-                <div class="option">
+                <div class="option option-dimmed">
                     <p class="option-label">Option One: Keep doing what you're doing.</p>
                     <p>Stare at blank pages. Watch other coaches build audiences with worse ideas than yours. Waste time scrolling for 'inspiration', using valuable hours you could spend on other parts of your business, only to post the same stuff everyone else posts.</p>
                 </div>
-                <div class="option">
+                <div class="option option-dimmed">
                     <p class="option-label">Option Two: Build something yourself.</p>
                     <p>Download Obsidian, learn how to use it, spend hours on YouTube figuring out MCPs, AI connections and the best way to store and manage notes. Probably doable in around 12 months of concerted effort.</p>
                 </div>
                 <div class="option option-highlight">
+                    <span class="option-badge">Recommended</span>
                     <p class="option-label">Option Three: Get the complete system, built and tested.</p>
                     <p>Start capturing and developing ideas this week. Publish content that sounds like you — not like every other coach in your feed.</p>
                 </div>
@@ -1035,7 +1168,19 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
 
-
+    // ================================================
+    // FAQ ACCORDION
+    // ================================================
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.closest('.faq-item');
+            const wasActive = item.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+            // Open clicked if it wasn't already open
+            if (!wasActive) item.classList.add('active');
+        });
+    });
 
     </script>
 </body>
