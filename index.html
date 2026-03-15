@@ -382,7 +382,7 @@
         .feature-card.border-cream { border-left-color: var(--warm-cream); }
         .feature-supporting-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
         .feature-supporting-grid .feature-card {
@@ -820,10 +820,13 @@
         <p class="hero-sub">The complete idea-to-content system that captures your unique thinking, develops it into original insights, and turns it into scroll-stopping content — in minutes, not hours.</p>
 
         <div class="vsl-wrapper">
-            <video controls preload="metadata">
-                <source src="video/vsl.mp4" type="video/mp4">
-                Your browser does not support the video element.
-            </video>
+            <div class="video-wrapper">
+                <div class="video-title-overlay"><span>Why I Made The Idea Factory</span></div>
+                <video controls preload="metadata" poster="images/thumbnails/why-i-made-it.png">
+                    <source src="video/vsl.mp4" type="video/mp4">
+                    Your browser does not support the video element.
+                </video>
+            </div>
         </div>
 
         <div style="margin-top: 48px;">
@@ -1047,23 +1050,6 @@
                     <p>Specifically crafted for coaches who want to stand out. The kind of prompts that take a half-baked observation and turn it into a perspective only YOU could share.</p>
                 </div>
 
-                <div class="feature-card border-charcoal">
-                    <span class="feature-number">03</span>
-                    <span class="feature-label">AI Integration</span>
-                    <h3>AI-Supercharged</h3>
-                    <p>Full integration with Claude AI, built right into the vault. But here's the difference:</p>
-                    <p><strong class="burnt-orange">This AI has context.</strong></p>
-                    <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
-                    <div class="video-placeholder" style="margin-top: 20px;">
-                        <div class="video-wrapper">
-                            <div class="video-title-overlay"><span>AI with Context</span></div>
-                            <video controls preload="metadata" poster="images/thumbnails/ai-with-context.png">
-                                <source src="video/ai-with-context.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="feature-card border-cream">
                     <span class="feature-number">04</span>
                     <span class="feature-label">Everything Else</span>
@@ -1075,6 +1061,23 @@
                         <li>Content templates for posts, newsletters, and long-form</li>
                         <li>Direct access to me for questions and troubleshooting</li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="feature-card border-charcoal fade-in">
+                <span class="feature-number">03</span>
+                <span class="feature-label">AI Integration</span>
+                <h3>AI-Supercharged</h3>
+                <p>Full integration with Claude AI, built right into the vault. But here's the difference:</p>
+                <p><strong class="burnt-orange">This AI has context.</strong></p>
+                <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
+                <div class="video-placeholder" style="margin-top: 20px;">
+                    <div class="video-wrapper">
+                        <div class="video-title-overlay"><span>AI with Context</span></div>
+                        <video controls preload="metadata" poster="images/thumbnails/ai-with-context.png">
+                            <source src="video/ai-with-context.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>
