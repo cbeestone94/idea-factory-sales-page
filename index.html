@@ -455,6 +455,50 @@
             border-radius: 16px;
         }
 
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .video-title-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(45,45,45,0.55) 0%, rgba(45,45,45,0.25) 100%);
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease-out-quart);
+            z-index: 2;
+        }
+
+        .video-title-overlay span {
+            font-family: 'Lora', serif;
+            font-size: clamp(1.3rem, 2.5vw + 0.5rem, 2.2rem);
+            font-weight: 600;
+            color: var(--cream);
+            text-align: center;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            padding: 0 24px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            text-transform: none;
+        }
+
+        .video-placeholder:has(video.playing) .video-title-overlay,
+        .video-placeholder:has(video[data-playing]) .video-title-overlay {
+            opacity: 0;
+        }
+
         /* ---- HOW IT WORKS ---- */
         .how-it-works {
             padding: 60px 0;
@@ -898,9 +942,12 @@
             <h3 class="fade-in">See it in action: Idea Storage</h3>
             <p class="fade-in">Your vault stores every spark of an idea with a six-stage workflow. Nothing gets lost. Everything is ready when you need it.</p>
             <div class="video-placeholder fade-in">
-                <video controls preload="metadata">
-                    <source src="video/vault-tour.mp4" type="video/mp4">
-                </video>
+                <div class="video-wrapper">
+                    <div class="video-title-overlay"><span>Vault Tour</span></div>
+                    <video controls preload="metadata" poster="images/thumbnails/vault-tour.png">
+                        <source src="video/vault-tour.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
 
             <div class="testimonial fade-in">
@@ -914,9 +961,12 @@
             <p class="fade-in">Watch how ideas that entered the vault weeks apart suddenly reveal they're about the same thing. This is where original content comes from.</p>
 
             <div class="video-placeholder fade-in">
-                <video controls preload="metadata">
-                    <source src="video/self-connecting-ideas.mp4" type="video/mp4">
-                </video>
+                <div class="video-wrapper">
+                    <div class="video-title-overlay"><span>Self-Connecting Ideas</span></div>
+                    <video controls preload="metadata" poster="images/thumbnails/self-connecting-ideas.png">
+                        <source src="video/self-connecting-ideas.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
 
             <div class="testimonial fade-in">
@@ -929,9 +979,12 @@
             <p class="fade-in">When it's time to publish, you pull from a vault of connected ideas. Claude AI — with full context of YOUR thinking — turns them into content in minutes.</p>
 
             <div class="video-placeholder fade-in">
-                <video controls preload="metadata">
-                    <source src="video/ideas-to-content.mp4" type="video/mp4">
-                </video>
+                <div class="video-wrapper">
+                    <div class="video-title-overlay"><span>From Ideas to Content</span></div>
+                    <video controls preload="metadata" poster="images/thumbnails/ideas-to-content.png">
+                        <source src="video/ideas-to-content.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
 
             <div class="testimonial fade-in">
@@ -946,9 +999,12 @@
             <p>Most "systems" get worse over time. Bloated, clunky — you end up not bothering. The Idea Factory is the only content system that gets better the more you use it. After three months, you'll have so many connected ideas that content practically writes itself.</p>
 
             <div class="video-placeholder fade-in">
-                <video controls preload="metadata">
-                    <source src="video/compounding-asset.mp4" type="video/mp4">
-                </video>
+                <div class="video-wrapper">
+                    <div class="video-title-overlay"><span>Compounding Asset</span></div>
+                    <video controls preload="metadata" poster="images/thumbnails/compounding-asset.png">
+                        <source src="video/compounding-asset.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </section>
     </div>
@@ -973,9 +1029,12 @@
                 <p>A complete Obsidian vault, pre-configured with a six-stage workflow. Templates for every stage. Dashboards showing exactly where each idea sits and what needs attention next.</p>
                 <p>No more ideas dying in scattered notes across 17 apps. This is your idea factory — literally. Everything in one place. Ready when you are.</p>
                 <div class="video-placeholder">
-                    <video controls preload="metadata">
-                        <source src="video/dashboard-in-action.mp4" type="video/mp4">
-                    </video>
+                    <div class="video-wrapper">
+                        <div class="video-title-overlay"><span>Dashboard in Action</span></div>
+                        <video controls preload="metadata" poster="images/thumbnails/dashboard-in-action.png">
+                            <source src="video/dashboard-in-action.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
 
@@ -996,9 +1055,12 @@
                     <p><strong class="burnt-orange">This AI has context.</strong></p>
                     <p>It knows your positioning. It understands your voice. It can see your connected ideas. When you ask it to help develop content, it's working WITH your thinking — not replacing it with generic slop.</p>
                     <div class="video-placeholder" style="margin-top: 20px;">
-                        <video controls preload="metadata">
-                            <source src="video/ai-with-context.mp4" type="video/mp4">
-                        </video>
+                        <div class="video-wrapper">
+                            <div class="video-title-overlay"><span>AI with Context</span></div>
+                            <video controls preload="metadata" poster="images/thumbnails/ai-with-context.png">
+                                <source src="video/ai-with-context.mp4" type="video/mp4">
+                            </video>
+                        </div>
                     </div>
                 </div>
 
@@ -1207,6 +1269,25 @@
         });
     }, { threshold: 0.5 });
     document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+    // ================================================
+    // VIDEO THUMBNAIL OVERLAYS
+    // ================================================
+    document.querySelectorAll('.video-wrapper video').forEach(v => {
+        v.addEventListener('play', () => {
+            const overlay = v.closest('.video-wrapper').querySelector('.video-title-overlay');
+            if (overlay) overlay.style.opacity = '0';
+        });
+        v.addEventListener('pause', () => {
+            if (v.currentTime > 0 && !v.ended) return;
+            const overlay = v.closest('.video-wrapper').querySelector('.video-title-overlay');
+            if (overlay) overlay.style.opacity = '1';
+        });
+        v.addEventListener('ended', () => {
+            const overlay = v.closest('.video-wrapper').querySelector('.video-title-overlay');
+            if (overlay) overlay.style.opacity = '1';
+        });
+    });
 
     // ================================================
     // FAQ ACCORDION
